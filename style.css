@@ -1,0 +1,196 @@
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .nav-logo {
+    margin-left: -220px;
+  }
+
+  .home-banner-offset {
+    margin-top: -130px;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    min-width: 170px;
+  }
+
+  .product-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-card img {
+    transition: 0.4s ease;
+  }
+
+  .product-card .hover-img {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  .product-card:hover .main-img {
+    opacity: 0;
+  }
+
+  .product-card:hover .hover-img {
+    opacity: 1;
+  }
+
+  /* Right icons */
+  .action-icons {
+    position: absolute;
+    top: 50%;
+    right: -50px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: 0.4s;
+  }
+
+  .product-card:hover .action-icons {
+    right: 15px;
+  }
+
+  .action-icons a {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
+    color: #111;
+  }
+
+  .action-icons a:hover {
+    background: #2f855a;
+    color: #fff;
+  }
+
+  .testimonial-bg {
+    background-image: url('img/bg-1.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .footer {
+    background: #1f4b2c;
+    color: #fff;
+    padding: 90px 0 40px;
+    font-size: 15px;
+  }
+
+  .footer h6 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+  }
+
+  .footer a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 14px;
+    opacity: .9;
+  }
+
+  .footer a:hover {
+    opacity: 1;
+  }
+
+  .news-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .7);
+    padding: 10px 0;
+    color: #fff;
+  }
+
+  .news-input::placeholder {
+    color: #ddd;
+  }
+
+  .social i {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, .6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+
+  .payments img {
+    height: 28px;
+    margin-right: 12px;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, .2);
+    margin-top: 50px;
+    padding-top: 20px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 1024px) {
+    .nav-logo {
+      margin-left: 0;
+    }
+
+    .home-banner-offset {
+      margin-top: 0;
+    }
+
+    .action-icons {
+      right: 12px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .slide h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .slide p {
+      font-size: 0.95rem;
+    }
+
+    .cta-group {
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+    }
+
+    .cta-btn {
+      width: 100%;
+      max-width: 280px;
+      min-width: 0;
+      padding: 0.85rem 1.2rem;
+      font-size: 1rem;
+    }
+
+    #slides .dot {
+      display: none;
+    }
+
+    .testimonial-bg {
+      min-height: 450px;
+      height: auto !important;
+    }
+  }
