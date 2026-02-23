@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+  <nav class="relative z-[1000] w-full bg-[#1f262b]">
+    <div class="max-w-8xl mx-auto px-6">
+
+      <!-- TOP BAR -->
+      <div class="flex items-center justify-between h-20">
+
+        <!-- LOGO -->
+
+        <!-- HAMBURGER (MOBILE + TABLET) -->
+        <button onclick="toggleMenu()" class="lg:hidden text-2xl text-white">
+          <i class="fa fa-bars"></i>
+        </button>
+
+        <!-- DESKTOP MENU -->
+        <ul class="hidden lg:flex items-center gap-6 text-sm tracking-wide text-gray-300">
+
+          <li class="relative">
+            <button onclick="toggleDropdown('home')" class="flex items-center gap-1 hover:text-white">
+              HOME <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="home" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a class="block px-4 py-2 hover:bg-gray-100">Home 1</a></li>
+              <li><a class="block px-4 py-2 hover:bg-gray-100">Home 2</a></li>
+            </ul>
+          </li>
+
+          <li class="relative">
+            <button onclick="toggleDropdown('shop')" class="flex items-center gap-1 hover:text-white">
+              SHOP <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="shop" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a class="block px-4 py-2 hover:bg-gray-100">Indoor</a></li>
+              <li><a class="block px-4 py-2 hover:bg-gray-100">Outdoor</a></li>
+            </ul>
+          </li>
+
+          <li class="relative">
+            <button onclick="toggleDropdown('product')" class="flex items-center gap-1 hover:text-white">
+              PRODUCT <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="product" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
+              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+            </ul>
+          </li>
+
+          <li class="relative">
+            <button onclick="toggleDropdown('blog')" class="flex items-center gap-1 hover:text-white">
+              BLOG <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="blog" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
+              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+            </ul>
+          </li>
+
+          <li class="relative">
+            <button onclick="toggleDropdown('featured')" class="flex items-center gap-1 hover:text-white">
+              FEATURED <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="featured" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
+              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="text-4xl font-serif text-white tracking-wide nav-logo">
+          <img src="img/logo-white.png" height="80px" width="130px">
+        </div>
+
+        <div class="hidden lg:flex items-center gap-6 text-lg text-white">
+          <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          <i class="fa-brands fa-facebook-f"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-solid fa-plus"></i>
+        </div>
+      </div>
+
+      <!-- MOBILE / TABLET MENU -->
+      <div id="mobileMenu" class="hidden lg:hidden border-t border-white/20">
+
+        <!-- HOME -->
+        <button onclick="toggleMobileDropdown('mhome')"
+          class="w-full text-left px-6 py-3 text-white border-b border-white/10">
+          HOME <i class="fa fa-chevron-down float-right"></i>
+        </button>
+        <div id="mhome" class="hidden bg-[#263037]">
+          <a href="#" class="block px-10 py-2 text-white">Home 1</a>
+          <a href="" class="block px-10 py-2 text-white">Home 2</a>
+        </div>
+
+        <!-- SHOP -->
+        <button onclick="toggleMobileDropdown('mshop')"
+          class="w-full text-left px-6 py-3 text-white border-b border-white/10">
+          SHOP <i class="fa fa-chevron-down float-right"></i>
+        </button>
+        <div id="mshop" class="hidden bg-[#263037]">
+          <a href="" class="block px-10 py-2 text-white">Indoor</a>
+          <a href="" class="block px-10 py-2 text-white">Outdoor</a>
+        </div>
+
+        <!-- PRODUCT -->
+        <button onclick="toggleMobileDropdown('mproduct')"
+          class="w-full text-left px-6 py-3 text-white border-b border-white/10">
+          PRODUCT <i class="fa fa-chevron-down float-right"></i>
+        </button>
+        <div id="mproduct" class="hidden bg-[#263037]">
+          <a href="" class="block px-10 py-2 text-white">Product 1</a>
+          <a href="" class="block px-10 py-2 text-white">Product 2</a>
+        </div>
+
+        <button onclick="toggleMobileDropdown('mblog')"
+          class="w-full text-left px-6 py-3 text-white border-b border-white/10">
+          BLOG <i class="fa fa-chevron-down float-right"></i>
+        </button>
+        <div id="mblog" class="hidden bg-[#263037]">
+          <a href="" class="block px-10 py-2 text-white">Pr1</a>
+          <a href="" class="block px-10 py-2 text-white">Pr2</a>
+        </div>
+
+        <button onclick="toggleMobileDropdown('mfeatured')"
+          class="w-full text-left px-6 py-3 text-white border-b border-white/10">
+          FEATURED <i class="fa fa-chevron-down float-right"></i>
+        </button>
+        <div id="mfeatured" class="hidden bg-[#263037]">
+          <a href="" class="block px-10 py-2 text-white">Product 1</a>
+          <a href="" class="block px-10 py-2 text-white">Product 2</a>
+        </div>
+
+      </div>
+
+    </div>
+  </nav>
+
+  <section class="shop-hero">
+    <div class="shop-hero-overlay">
+      <h1>Products</h1>
+    </div>
+  </section>
+
+  <main class="shop-page">
+    <div class="shop-wrap">
+      <aside class="shop-sidebar">
+        
+        <section class="shop-filter-block">
+          <h3>Collections <i class="bi bi-chevron-down"></i></h3>
+          <ul class="shop-filter-list">
+            <li><a href="#" data-collection="air-purifying">Air Purifying</a><span>6</span></li>
+            <li><a href="#" data-collection="ceramic-pots">Ceramic Pots</a><span>9</span></li>
+            <li><a href="#" data-collection="herb-seeds">Herb Seeds</a><span>6</span></li>
+            <li><a href="#" data-collection="indoor-plants">Indoor Plants</a><span>5</span></li>
+          </ul>
+        </section>
+
+        <section class="shop-filter-block">
+          <h3>Availability <i class="bi bi-chevron-up"></i></h3>
+          <ul class="shop-filter-list shop-check-list">
+            <li><label><input type="checkbox" data-stock="in"> In stock</label><span>9</span></li>
+            <li><label><input type="checkbox" data-stock="out"> Out of stock</label><span>1</span></li>
+          </ul>
+        </section>
+
+        <section class="shop-filter-block">
+          <h3>Price <i class="bi bi-chevron-down"></i></h3>
+          <div class="shop-price-range">
+            <div class="shop-range-line">
+              <span></span>
+              <span></span>
+            </div>
+            <p>Price : <strong>$0.00</strong> — $153.00</p>
+          </div>
+        </section>
+
+        <section class="shop-filter-block">
+          <h3>Size <i class="bi bi-chevron-down"></i></h3>
+          <div class="shop-size-options">
+            <button type="button" data-size="30cm">30cm</button>
+            <button type="button" data-size="50cm">50cm</button>
+            <button type="button" data-size="60cm">60cm</button>
+          </div>
+        </section>
+
+        <section class="shop-filter-block">
+          <h3>Color <i class="bi bi-chevron-down"></i></h3>
+          <ul class="shop-color-list">
+            <li data-color="black"><span class="dot black"></span>Black <span>5</span></li>
+            <li data-color="blue"><span class="dot blue"></span>Blue <span>3</span></li>
+            <li data-color="floral"><span class="dot floral">🌸</span>Floral <span>2</span></li>
+            <li data-color="geometric"><span class="dot geo">🌿</span>Geometric <span>1</span></li>
+            <li data-color="grey"><span class="dot grey"></span>Grey <span>1</span></li>
+          </ul>
+          <a href="#" class="shop-view-more">+ View more</a>
+        </section>
+
+        <section class="shop-filter-block">
+          <h3>Feature Product <i class="bi bi-chevron-down"></i></h3>
+          <div class="shop-feature-list">
+            <article>
+              <img src="img/11-8_540x.webp" alt="Tiger Aloe">
+              <div>
+                <p class="rating">★★★★☆</p>
+                <h3>Tiger Aloe</h3>
+                <p class="price">$150.00</p>
+              </div>
+            </article>
+            <article>
+              <img src="img/4_e38424b6-c524-41ed-9909-c9060fd972c1_540x.webp" alt="The Beginner Set">
+              <div>
+                <p class="rating">★★★★☆</p>
+                <h3>The Beginner Set</h3>
+                <p class="price">$130.00</p>
+              </div>
+            </article>
+            <article>
+              <img src="img/10-2_600x.webp" alt="Ruby Rubber Tree">
+              <div>
+                <p class="rating">★★★★☆</p>
+                <h3>Ruby Rubber Tree</h3>
+                <p class="price"><span>$90.00</span> $51.00</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </aside>
+
+      <section class="shop-content">
+        <div class="shop-toolbar">
+          <p class="shop-result-count">You've viewed 9 of 10 products</p>
+          <div class="shop-toolbar-right">
+            <div class="shop-view-icons">
+              <button type="button" data-cols="1"><i class="bi bi-grid-1x2"></i></button>
+              <button type="button" data-cols="2"><i class="bi bi-grid"></i></button>
+              <button type="button" data-cols="3" class="active"><i class="bi bi-grid-3x3-gap-fill"></i></button>
+              <button type="button" data-cols="4"><i class="bi bi-grid-3x3-gap"></i></button>
+            </div>
+            <button class="shop-sort-btn" data-sort-order="asc" type="button">Price, low to high <i class="bi bi-caret-down-fill"></i></button>
+          </div>
+        </div>
+
+        <div class="shop-grid" data-per-page="6">
+          <article class="shop-item text-center" data-price="50" data-collection="air-purifying" data-stock="in" data-size="30cm" data-color="floral">
+            <div class="shop-item-image product-card">
+              <span class="badge red">- 28%</span>
+              <img src="img/11-8_540x.webp" alt="Jade Succulent" class="main-img">
+              <img src="img/11-8_540x.webp" alt="Jade Succulent" class="hover-img">
+            <div class="action-icons">
+              <a href="#"><i class="fa-regular fa-heart"></i></a>
+              <a href="#"><i class="fa-regular fa-eye"></i></a>
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            </div>
+            <p class="stars dark">★★☆☆☆</p>
+            <h4>Jade Succulent</h4>
+            <p class="shop-price">$50.00</p>
+            <div class="shop-swatches"><span class="s-pink"></span><span class="s-red"></span><span class="s-more">+1</span></div>
+          </article>
+
+          <article class="shop-item text-center" data-price="50" data-collection="indoor-plants" data-stock="in" data-size="50cm" data-color="blue">
+            <div class="shop-item-image product-card">
+              <img src="img/4_e38424b6-c524-41ed-9909-c9060fd972c1_540x.webp" alt="Palm" class="main-img">
+              <img src="img/10-3_540x.webp" alt="Palm" class="hover-img">
+            <div class="action-icons">
+              <a href="#"><i class="fa-regular fa-heart"></i></a>
+              <a href="#"><i class="fa-regular fa-eye"></i></a>
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            </div>
+            <p class="stars">☆☆☆☆☆</p>
+            <h4>Palm</h4>
+            <p class="shop-price">$50.00</p>
+            <div class="shop-swatches"><span class="s-white"></span><span class="s-blue"></span></div>
+          </article>
+
+          <article class="shop-item text-center" data-price="52" data-collection="air-purifying" data-stock="in" data-size="60cm" data-color="black">
+            <div class="shop-item-image product-card">
+              <span class="badge red">- 43%</span>
+              <img src="img/10-2_600x.webp" alt="Ruby Rubber Tree" class="main-img">
+              <img src="img/10-6_540x.webp" alt="Ruby Rubber Tree" class="hover-img">
+            <div class="action-icons">
+              <a href="#"><i class="fa-regular fa-heart"></i></a>
+              <a href="#"><i class="fa-regular fa-eye"></i></a>
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            </div>
+            <p class="stars">☆☆☆☆☆</p>
+            <h4>Ruby Rubber Tree</h4>
+            <p class="shop-price"><span>$90.00</span> $52.00</p>
+            <div class="shop-swatches"><span class="s-black"></span><span class="s-pink"></span><span class="s-more">+1</span></div>
+          </article>
+
+          <article class="shop-item text-center" data-price="52" data-collection="herb-seeds" data-stock="in" data-size="30cm" data-color="grey">
+            <div class="shop-item-image product-card">
+              <img src="img/10-5_1080x1080.webp" alt="Bought Together" class="main-img">
+              <img src="img/10-5_1080x1080.webp" alt="Bought Together" class="hover-img">
+            <div class="action-icons">
+              <a href="#"><i class="fa-regular fa-heart"></i></a>
+              <a href="#"><i class="fa-regular fa-eye"></i></a>
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            </div>
+            <p class="stars">☆☆☆☆☆</p>
+            <h4>Bought Together</h4>
+            <p class="shop-price">$52.00</p>
+            <div class="shop-swatches"><span class="s-red"></span><span class="s-grey"></span></div>
+          </article>
+
+          <article class="shop-item text-center" data-price="60" data-collection="ceramic-pots" data-stock="in" data-size="50cm" data-color="black">
+            <div class="shop-item-image product-card">
+              <span class="badge red">- 33%</span>
+              <img src="img/10-3_540x.webp" alt="Peace Lily" class="main-img">
+              <img src="img/10-3_540x.webp" alt="Peace Lily" class="hover-img">
+            <div class="action-icons">
+              <a href="#"><i class="fa-regular fa-heart"></i></a>
+              <a href="#"><i class="fa-regular fa-eye"></i></a>
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            </div>
+            <p class="stars dark">★★★★★</p>
+            <h4>Peace Lily</h4>
+            <p class="shop-price"><span>$90.00</span> $60.00</p>
+            <div class="shop-swatches"><span class="s-black"></span><span class="s-white"></span><span class="s-more">+1</span></div>
+          </article>
+
+          <article class="shop-item text-center" data-price="62" data-collection="indoor-plants" data-stock="in" data-size="60cm" data-color="floral">
+            <div class="shop-item-image product-card">
+              <span class="badge red">- 31%</span>
+              <img src="img/12-4_1080x1080.webp" alt="Umbrella Tree" class="main-img">
+              <img src="img/12-4_1080x1080.webp" alt="Umbrella Tree" class="hover-img">
+            <div class="action-icons">
+              <a href="#"><i class="fa-regular fa-heart"></i></a>
+              <a href="#"><i class="fa-regular fa-eye"></i></a>
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            </div>
+            <p class="stars">☆☆☆☆☆</p>
+            <h4>Umbrella Tree</h4>
+            <p class="shop-price"><span>$90.00</span> $62.00 <em>(Pre-order)</em></p>
+            <div class="shop-swatches"><span class="s-geo">🌿</span><span class="s-floral">🌸</span></div>
+          </article>
+
+          <article class="shop-item text-center" data-price="80" data-collection="herb-seeds" data-stock="in" data-size="30cm" data-color="geometric">
+            <div class="shop-item-image product-card">
+              <img src="img/1_1080x1080.webp" alt="A Philippine" class="main-img">
+              <img src="img/1_1080x1080.webp" alt="A Philippine" class="hover-img">
+            <div class="action-icons">
+              <a href="#"><i class="fa-regular fa-heart"></i></a>
+              <a href="#"><i class="fa-regular fa-eye"></i></a>
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            </div>
+            <p class="stars">☆☆☆☆☆</p>
+            <h4>A Philippine (Upsell)</h4>
+            <p class="shop-price">$80.00</p>
+            <div class="shop-swatches"><span class="s-geo">🌿</span><span class="s-floral">🌸</span></div>
+          </article>
+
+          <article class="shop-item text-center" data-price="80" data-collection="ceramic-pots" data-stock="out" data-size="50cm" data-color="grey">
+            <div class="shop-item-image product-card">
+              <span class="badge gray">Out of stock</span>
+              <img src="img/7_1080x1080.webp" alt="Pink Dragon Tree" class="main-img">
+              <img src="img/7_1080x1080.webp" alt="Pink Dragon Tree" class="hover-img">
+            <div class="action-icons">
+              <a href="#"><i class="fa-regular fa-heart"></i></a>
+              <a href="#"><i class="fa-regular fa-eye"></i></a>
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            </div>
+            <p class="stars">☆☆☆☆☆</p>
+            <h4>Pink Dragon Tree</h4>
+            <p class="shop-price"><span>$100.00</span> $80.00</p>
+          </article>
+
+          <article class="shop-item text-center" data-price="130" data-collection="air-purifying" data-stock="in" data-size="60cm" data-color="blue">
+            <div class="shop-item-image product-card">
+              <img src="img/4_e38424b6-c524-41ed-9909-c9060fd972c1_540x.webp" alt="The Beginner Set" class="main-img">
+              <img src="img/4_e38424b6-c524-41ed-9909-c9060fd972c1_540x.webp" alt="The Beginner Set" class="hover-img">
+            <div class="action-icons">
+              <a href="#"><i class="fa-regular fa-heart"></i></a>
+              <a href="#"><i class="fa-regular fa-eye"></i></a>
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+            </div>
+            <p class="stars">☆☆☆☆☆</p>
+            <h4>The Beginner Set</h4>
+            <p class="shop-price">$130.00</p>
+            <div class="shop-swatches"><span class="s-pink"></span><span class="s-orange"></span><span class="s-more">+1</span></div>
+          </article>
+        </div>
+
+        <div class="shop-pagination">
+          <button class="active" data-page="1" type="button">1</button>
+          <button data-page="2" type="button">2</button>
+          <button data-role="next" type="button"><i class="bi bi-chevron-right"></i></button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <button class="shop-scroll-top" aria-label="Back to top" type="button">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+<footer class="footer mt-5">
+    <div class="container">
+
+      <div class="row gy-5">
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>COMPANY</h6>
+          <a>About</a>
+          <a>Careers</a>
+          <a>Press</a>
+          <a>Corporate Orders</a>
+          <a>Refer a Friend</a>
+          <a>Our Guarantee</a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>SUPPORT</h6>
+          <a>Help + FAQs</a>
+          <a>Track Your Order</a>
+          <a>Shipping</a>
+          <a>Returns</a>
+          <a>Contact Support</a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>PLANT QUESTIONS?</h6>
+          <a>Plant Care Tips</a>
+          <a>Plant Life Blog</a>
+          <a>Vera Plant Care App</a>
+          <a>Meet Plant Mom</a>
+          <a>Contact the Grow-How™ Team</a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>STAY IN THE LOOP</h6>
+          <p class="mb-4">Stay in the loop with special offers, plant-parenting tips, and more.</p>
+          <input type="email" placeholder="Email address..." class="news-input">
+
+          <div class="d-flex mt-4 social">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-x-twitter"></i>
+            <i class="fab fa-whatsapp"></i>
+            <i class="fab fa-tiktok"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="payments mt-5">
+        <img src="img/payment.avif">
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between">
+        <div>© 2024 Flacio Store</div>
+        <div>
+          <span class="me-4">Terms Of Use</span>
+          <span class="me-4">Copyright & Trademark</span>
+          <span class="me-4">Policy</span>
+          <span>Sitemap</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

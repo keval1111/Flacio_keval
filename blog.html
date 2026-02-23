@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+<body>
+
+  <nav class="relative z-[1000] w-full bg-[#1f262b]">
+    <div class="max-w-8xl mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <button onclick="toggleMenu()" class="lg:hidden text-2xl text-white" aria-label="Open menu" type="button">
+          <i class="fa fa-bars"></i>
+        </button>
+
+        <ul class="hidden lg:flex items-center gap-6 text-sm tracking-wide text-gray-300">
+          <li class="relative">
+            <button onclick="toggleDropdown('home')" class="flex items-center gap-1 hover:text-white" type="button">
+              HOME <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="home" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a href="home.html" class="block px-4 py-2 hover:bg-gray-100">Home 1</a></li>
+              <li><a href="home.html" class="block px-4 py-2 hover:bg-gray-100">Home 2</a></li>
+            </ul>
+          </li>
+
+          <li class="relative">
+            <button onclick="toggleDropdown('shop')" class="flex items-center gap-1 hover:text-white" type="button">
+              SHOP <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="shop" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Indoor</a></li>
+              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Outdoor</a></li>
+            </ul>
+          </li>
+
+          <li class="relative">
+            <button onclick="toggleDropdown('product')" class="flex items-center gap-1 hover:text-white" type="button">
+              PRODUCT <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="product" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a href="product-detail.html" class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
+              <li><a href="product-detail.html" class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+            </ul>
+          </li>
+
+          <li class="relative">
+            <button onclick="toggleDropdown('blog')" class="flex items-center gap-1 hover:text-white" type="button">
+              BLOG <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="blog" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a href="blog.html" class="block px-4 py-2 hover:bg-gray-100">Blog Grid</a></li>
+              <li><a href="blog.html" class="block px-4 py-2 hover:bg-gray-100">Blog List</a></li>
+            </ul>
+          </li>
+
+          <li class="relative">
+            <button onclick="toggleDropdown('featured')" class="flex items-center gap-1 hover:text-white" type="button">
+              FEATURED <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="featured" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Top Rated</a></li>
+              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Trending</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="text-4xl font-serif text-white tracking-wide nav-logo">
+          <a href="home.html"><img src="img/logo-white.png" height="80" width="130" alt="Flacio"></a>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-6 text-lg text-white">
+          <a href="shop.html" aria-label="Compare"><i class="fa-solid fa-arrow-right-arrow-left"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Wishlist"><i class="fa-regular fa-star"></i></a>
+          <a href="shop.html" aria-label="Add"><i class="fa-solid fa-plus"></i></a>
+        </div>
+      </div>
+
+      <div id="mobileMenu" class="hidden lg:hidden border-t border-white/20">
+        <button onclick="toggleMobileDropdown('mhome')" class="w-full text-left px-6 py-3 text-white border-b border-white/10" type="button">
+          HOME <i class="fa fa-chevron-down float-right"></i>
+        </button>
+        <div id="mhome" class="hidden bg-[#263037]">
+          <a href="home.html" class="block px-10 py-2 text-white">Home 1</a>
+          <a href="home.html" class="block px-10 py-2 text-white">Home 2</a>
+        </div>
+
+        <button onclick="toggleMobileDropdown('mshop')" class="w-full text-left px-6 py-3 text-white border-b border-white/10" type="button">
+          SHOP <i class="fa fa-chevron-down float-right"></i>
+        </button>
+        <div id="mshop" class="hidden bg-[#263037]">
+          <a href="shop.html" class="block px-10 py-2 text-white">Indoor</a>
+          <a href="shop.html" class="block px-10 py-2 text-white">Outdoor</a>
+        </div>
+
+        <button onclick="toggleMobileDropdown('mproduct')" class="w-full text-left px-6 py-3 text-white border-b border-white/10" type="button">
+          PRODUCT <i class="fa fa-chevron-down float-right"></i>
+        </button>
+        <div id="mproduct" class="hidden bg-[#263037]">
+          <a href="product-detail.html" class="block px-10 py-2 text-white">Product 1</a>
+          <a href="product-detail.html" class="block px-10 py-2 text-white">Product 2</a>
+        </div>
+
+        <button onclick="toggleMobileDropdown('mblog')" class="w-full text-left px-6 py-3 text-white border-b border-white/10" type="button">
+          BLOG <i class="fa fa-chevron-down float-right"></i>
+        </button>
+        <div id="mblog" class="hidden bg-[#263037]">
+          <a href="blog.html" class="block px-10 py-2 text-white">Blog Grid</a>
+          <a href="blog.html" class="block px-10 py-2 text-white">Blog List</a>
+        </div>
+
+        <button onclick="toggleMobileDropdown('mfeatured')" class="w-full text-left px-6 py-3 text-white border-b border-white/10" type="button">
+          FEATURED <i class="fa fa-chevron-down float-right"></i>
+        </button>
+        <div id="mfeatured" class="hidden bg-[#263037]">
+          <a href="shop.html" class="block px-10 py-2 text-white">Top Rated</a>
+          <a href="shop.html" class="block px-10 py-2 text-white">Trending</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="blog-hero">
+    <div class="blog-hero-content">
+      <h1 class="blog-hero-title">Blogs</h1>
+      <nav class="blog-hero-tabs" aria-label="Blog Categories">
+        <a href="#" data-blog-filter="fashion">Fashion</a>
+        <a href="#" data-blog-filter="life-style" class="active">Life Style</a>
+        <a href="#" data-blog-filter="news">News</a>
+        <a href="#" data-blog-filter="shorts">Shorts</a>
+      </nav>
+    </div>
+  </section>
+
+<main class="blog-page">
+    <div class="blog-layout">
+      <aside class="blog-sidebar">
+        <div class="blog-search-box">
+          <input type="search" placeholder="Search blog..." data-blog-search aria-label="Search blog posts">
+          <button type="button" aria-label="Search"><i class="bi bi-search"></i></button>
+        </div>
+
+        <section class="blog-widget">
+          <h3>Categories</h3>
+          <ul class="blog-category-list">
+            <li><a href="#" data-blog-filter="fashion"><i class="bi bi-chevron-right"></i>Fashion</a></li>
+            <li><a href="#" data-blog-filter="life-style" class="active-filter"><i class="bi bi-chevron-right"></i>Life Style</a></li>
+            <li><a href="#" data-blog-filter="news"><i class="bi bi-chevron-right"></i>News</a></li>
+            <li><a href="#" data-blog-filter="shorts"><i class="bi bi-chevron-right"></i>Shorts</a></li>
+          </ul>
+        </section>
+
+        <section class="blog-widget">
+          <h3>Related Posts</h3>
+          <article class="blog-related-card">
+            <img src="img/banner-5.jpg" alt="The Best Tree Care Tips For You">
+            <div>
+              <span>LIFE STYLE</span>
+              <a href="#" data-blog-filter="life-style">The Best Tree Care Tips For You</a>
+              <p>0 comments</p>
+            </div>
+          </article>
+          <article class="blog-related-card">
+            <img src="img/banner-3.jpg" alt="How To Style Indoor Corners With Plants">
+            <div>
+              <span>FASHION</span>
+              <a href="#" data-blog-filter="fashion">How To Style Indoor Corners With Plants</a>
+              <p>2 comments</p>
+            </div>
+          </article>
+          <article class="blog-related-card">
+            <img src="img/banner-1.webp" alt="New Seasonal Collection Is Live">
+            <div>
+              <span>NEWS</span>
+              <a href="#" data-blog-filter="news">New Seasonal Collection Is Live</a>
+              <p>3 comments</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="blog-widget">
+          <h3>Tags</h3>
+          <div class="blog-tags">
+            <button type="button" data-blog-tag="baber">Baber</button>
+            <button type="button" data-blog-tag="baby-needs">Baby Needs</button>
+            <button type="button" data-blog-tag="beauty">Beauty</button>
+            <button type="button" data-blog-tag="cosmetic">Cosmetic</button>
+            <button type="button" data-blog-tag="new">New</button>
+            <button type="button" data-blog-tag="organic">Organic</button>
+            <button type="button" data-blog-tag="simple">Simple</button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="blog-content">
+        <article class="blog-post-card" data-category="life-style" data-tags="organic,beauty,new" data-title="The Best Tree Care Tips For You">
+          <div class="blog-post-image-wrap">
+            <span class="blog-post-date">September 30, 2024</span>
+            <img src="img/blog-4_1296x.webp" alt="The Best Tree Care Tips For You" class="blog-post-image">
+          </div>
+
+          <div class="blog-post-meta">
+            <span><i class="bi bi-person"></i>By: Tung Hoang</span>
+            <span><i class="bi bi-chat-left"></i>0 comments</span>
+            <span><i class="bi bi-folder"></i>Life Style</span>
+          </div>
+
+          <h2>The Best Tree Care Tips For You</h2>
+          <p>Quisque elementum nibh at dolor pellentesque, a eleifend libero pharetra. Mauris neque felis, volutpat nec ullamcorper.</p>
+          <a href="#" class="blog-read-more">READ MORE</a>
+        </article>
+
+        <article class="blog-post-card" data-category="fashion" data-tags="beauty,simple" data-title="How To Style Indoor Corners With Plants">
+          <div class="blog-post-image-wrap">
+            <span class="blog-post-date">October 04, 2024</span>
+            <img src="img/blog-3_1296x.webp" alt="How To Style Indoor Corners With Plants" class="blog-post-image">
+          </div>
+
+          <div class="blog-post-meta">
+            <span><i class="bi bi-person"></i>By: Team Flacio</span>
+            <span><i class="bi bi-chat-left"></i>2 comments</span>
+            <span><i class="bi bi-folder"></i>Fashion</span>
+          </div>
+
+          <h2>How To Style Indoor Corners With Plants</h2>
+          <p>Integer hendrerit velit vel turpis feugiat, non fringilla massa iaculis. Etiam in faucibus lectus.</p>
+          <a href="#" class="blog-read-more">READ MORE</a>
+        </article>
+
+        <article class="blog-post-card" data-category="news" data-tags="new,baby-needs" data-title="New Seasonal Collection Is Live">
+          <div class="blog-post-image-wrap">
+            <span class="blog-post-date">October 08, 2024</span>
+            <img src="img/blog-6_1296x.webp" alt="New Seasonal Collection Is Live" class="blog-post-image">
+          </div>
+
+          <div class="blog-post-meta">
+            <span><i class="bi bi-person"></i>By: Flacio Desk</span>
+            <span><i class="bi bi-chat-left"></i>3 comments</span>
+            <span><i class="bi bi-folder"></i>News</span>
+          </div>
+
+          <h2>New Seasonal Collection Is Live</h2>
+          <p>Praesent bibendum orci sed sem ultrices, at dapibus elit ullamcorper. Integer eu urna sodales, luctus odio sed.</p>
+          <a href="#" class="blog-read-more">READ MORE</a>
+        </article>
+
+        <article class="blog-post-card" data-category="news" data-tags="new,organic" data-title="Urban Balcony Planting Trends 2024">
+          <div class="blog-post-image-wrap">
+            <span class="blog-post-date">October 12, 2024</span>
+            <img src="img/blog-2_1296x.webp" alt="Urban Balcony Planting Trends 2024" class="blog-post-image">
+          </div>
+
+          <div class="blog-post-meta">
+            <span><i class="bi bi-person"></i>By: Flacio Desk</span>
+            <span><i class="bi bi-chat-left"></i>5 comments</span>
+            <span><i class="bi bi-folder"></i>News</span>
+          </div>
+
+          <h2>Urban Balcony Planting Trends 2024</h2>
+          <p>Donec blandit sem in lacus ultricies, et aliquet diam elementum. Sed luctus eros in mauris feugiat porttitor.</p>
+          <a href="#" class="blog-read-more">READ MORE</a>
+        </article>
+
+        <article class="blog-post-card" data-category="news" data-tags="new,beauty" data-title="Flacio Community Green Week Highlights">
+          <div class="blog-post-image-wrap">
+            <span class="blog-post-date">October 16, 2024</span>
+            <img src="img/blog-1_1296x.webp" alt="Flacio Community Green Week Highlights" class="blog-post-image">
+          </div>
+
+          <div class="blog-post-meta">
+            <span><i class="bi bi-person"></i>By: Flacio Updates</span>
+            <span><i class="bi bi-chat-left"></i>7 comments</span>
+            <span><i class="bi bi-folder"></i>News</span>
+          </div>
+
+          <h2>Flacio Community Green Week Highlights</h2>
+          <p>Vivamus finibus, arcu in vulputate vestibulum, nunc ipsum luctus lorem, non lacinia libero mi eget odio.</p>
+          <a href="#" class="blog-read-more">READ MORE</a>
+        </article>
+
+        <p class="blog-empty-state" hidden>No posts found for your current filters.</p>
+      </section>
+    </div>
+</main>
+
+<footer class="footer mt-5">
+    <div class="container">
+      <div class="row gy-5">
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>COMPANY</h6>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+          <a href="#">Corporate Orders</a>
+          <a href="#">Refer a Friend</a>
+          <a href="#">Our Guarantee</a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>SUPPORT</h6>
+          <a href="#">Help + FAQs</a>
+          <a href="#">Track Your Order</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+          <a href="#">Contact Support</a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>PLANT QUESTIONS?</h6>
+          <a href="#">Plant Care Tips</a>
+          <a href="#">Plant Life Blog</a>
+          <a href="#">Vera Plant Care App</a>
+          <a href="#">Meet Plant Mom</a>
+          <a href="#">Contact the Grow-How Team</a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>STAY IN THE LOOP</h6>
+          <p class="mb-4">Stay in the loop with special offers, plant-parenting tips, and more.</p>
+          <input type="email" placeholder="Email address..." class="news-input">
+
+          <div class="d-flex mt-4 social">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-x-twitter"></i>
+            <i class="fab fa-whatsapp"></i>
+            <i class="fab fa-tiktok"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="payments mt-5">
+        <img src="img/payment.avif" alt="Payment Methods">
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between">
+        <div>&copy; 2024 Flacio Store</div>
+        <div>
+          <span class="me-4">Terms Of Use</span>
+          <span class="me-4">Copyright &amp; Trademark</span>
+          <span class="me-4">Policy</span>
+          <span>Sitemap</span>
+        </div>
+      </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
