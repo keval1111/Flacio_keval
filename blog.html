@@ -19,118 +19,170 @@
 
   <nav class="relative z-[1000] w-full bg-[#1f262b]">
     <div class="max-w-8xl mx-auto px-6">
+
+      <!-- TOP BAR -->
       <div class="flex items-center justify-between h-20">
-        <button onclick="toggleMenu()" class="lg:hidden text-2xl text-white" aria-label="Open menu" type="button">
+
+        <!-- LOGO -->
+
+        <!-- HAMBURGER (MOBILE + TABLET) -->
+        <button onclick="toggleMenu()" class="lg:hidden text-2xl text-white">
           <i class="fa fa-bars"></i>
         </button>
 
+        <!-- DESKTOP MENU -->
         <ul class="hidden lg:flex items-center gap-6 text-sm tracking-wide text-gray-300">
+
           <li class="relative">
-            <button onclick="toggleDropdown('home')" class="flex items-center gap-1 hover:text-white" type="button">
+            <button onclick="toggleDropdown('home')" class="flex items-center gap-1 hover:text-white">
               HOME <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="home" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a href="home.html" class="block px-4 py-2 hover:bg-gray-100">Home 1</a></li>
-              <li><a href="home.html" class="block px-4 py-2 hover:bg-gray-100">Home 2</a></li>
+              <li><a href="home.html" class="block px-4 py-2 hover:bg-gray-100">Home</a></li> 
             </ul>
           </li>
 
           <li class="relative">
-            <button onclick="toggleDropdown('shop')" class="flex items-center gap-1 hover:text-white" type="button">
+            <button onclick="toggleDropdown('shop')" class="flex items-center gap-1 hover:text-white">
               SHOP <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="shop" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Indoor</a></li>
-              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Outdoor</a></li>
+              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">SHOP</a></li>             
             </ul>
           </li>
 
           <li class="relative">
-            <button onclick="toggleDropdown('product')" class="flex items-center gap-1 hover:text-white" type="button">
+            <button onclick="toggleDropdown('product')" class="flex items-center gap-1 hover:text-white">
               PRODUCT <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="product" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a href="product-detail.html" class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
-              <li><a href="product-detail.html" class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+              <li><a href="product-detail.html" class="block px-4 py-2 hover:bg-gray-100">PRODUCT</a></li>             
             </ul>
           </li>
 
           <li class="relative">
-            <button onclick="toggleDropdown('blog')" class="flex items-center gap-1 hover:text-white" type="button">
+            <button onclick="toggleDropdown('blog')" class="flex items-center gap-1 hover:text-white">
               BLOG <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="blog" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a href="blog.html" class="block px-4 py-2 hover:bg-gray-100">Blog Grid</a></li>
-              <li><a href="blog.html" class="block px-4 py-2 hover:bg-gray-100">Blog List</a></li>
+              <li><a href="blog.html" class="block px-4 py-2 hover:bg-gray-100">BLOG</a></li>             
             </ul>
           </li>
 
           <li class="relative">
-            <button onclick="toggleDropdown('featured')" class="flex items-center gap-1 hover:text-white" type="button">
+            <button onclick="toggleDropdown('featured')" class="flex items-center gap-1 hover:text-white">
               FEATURED <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="featured" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Top Rated</a></li>
-              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Trending</a></li>
+              <li><a href="featured.html" class="block px-4 py-2 hover:bg-gray-100">FEATURED</a></li>
             </ul>
           </li>
         </ul>
 
         <div class="text-4xl font-serif text-white tracking-wide nav-logo">
-          <a href="home.html"><img src="img/logo-white.png" height="80" width="130" alt="Flacio"></a>
+          <img src="img/logo-white.png" height="80px" width="130px">
         </div>
 
         <div class="hidden lg:flex items-center gap-6 text-lg text-white">
-          <a href="shop.html" aria-label="Compare"><i class="fa-solid fa-arrow-right-arrow-left"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" aria-label="Wishlist"><i class="fa-regular fa-star"></i></a>
-          <a href="shop.html" aria-label="Add"><i class="fa-solid fa-plus"></i></a>
+          <button type="button" onclick="toggleNavSearch()" class="text-white hover:text-gray-300 transition" aria-label="Open search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button type="button" onclick="openUserSidebar()" class="text-white hover:text-gray-300 transition" aria-label="Open account sidebar">
+            <i class="fa-regular fa-circle-user"></i>
+          </button>
+          <i class="fa-regular fa-heart"></i>
+          <i class="fa-solid fa-cart-shopping"></i>
         </div>
       </div>
 
+      <!-- MOBILE / TABLET MENU -->
       <div id="mobileMenu" class="hidden lg:hidden border-t border-white/20">
-        <button onclick="toggleMobileDropdown('mhome')" class="w-full text-left px-6 py-3 text-white border-b border-white/10" type="button">
+
+        <!-- HOME -->
+        <button onclick="toggleMobileDropdown('mhome')"
+          class="w-full text-left px-6 py-3 text-white border-b border-white/10">
           HOME <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mhome" class="hidden bg-[#263037]">
-          <a href="home.html" class="block px-10 py-2 text-white">Home 1</a>
-          <a href="home.html" class="block px-10 py-2 text-white">Home 2</a>
+          <a href="home.html" class="block px-10 py-2 text-white">HOME</a>
         </div>
 
-        <button onclick="toggleMobileDropdown('mshop')" class="w-full text-left px-6 py-3 text-white border-b border-white/10" type="button">
+        <!-- SHOP -->
+        <button onclick="toggleMobileDropdown('mshop')"
+          class="w-full text-left px-6 py-3 text-white border-b border-white/10">
           SHOP <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mshop" class="hidden bg-[#263037]">
-          <a href="shop.html" class="block px-10 py-2 text-white">Indoor</a>
-          <a href="shop.html" class="block px-10 py-2 text-white">Outdoor</a>
+          <a href="shop.html" class="block px-10 py-2 text-white">SHOP</a>
         </div>
 
-        <button onclick="toggleMobileDropdown('mproduct')" class="w-full text-left px-6 py-3 text-white border-b border-white/10" type="button">
+        <!-- PRODUCT -->
+        <button onclick="toggleMobileDropdown('mproduct')"
+          class="w-full text-left px-6 py-3 text-white border-b border-white/10">
           PRODUCT <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mproduct" class="hidden bg-[#263037]">
-          <a href="product-detail.html" class="block px-10 py-2 text-white">Product 1</a>
-          <a href="product-detail.html" class="block px-10 py-2 text-white">Product 2</a>
+          <a href="product-detail.html" class="block px-10 py-2 text-white">PRODUCT</a>
         </div>
 
-        <button onclick="toggleMobileDropdown('mblog')" class="w-full text-left px-6 py-3 text-white border-b border-white/10" type="button">
+        <button onclick="toggleMobileDropdown('mblog')"
+          class="w-full text-left px-6 py-3 text-white border-b border-white/10">
           BLOG <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mblog" class="hidden bg-[#263037]">
-          <a href="blog.html" class="block px-10 py-2 text-white">Blog Grid</a>
-          <a href="blog.html" class="block px-10 py-2 text-white">Blog List</a>
+          <a href="blog.html" class="block px-10 py-2 text-white">BLOG</a>
         </div>
 
-        <button onclick="toggleMobileDropdown('mfeatured')" class="w-full text-left px-6 py-3 text-white border-b border-white/10" type="button">
+        <button onclick="toggleMobileDropdown('mfeatured')"
+          class="w-full text-left px-6 py-3 text-white border-b border-white/10">
           FEATURED <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mfeatured" class="hidden bg-[#263037]">
-          <a href="shop.html" class="block px-10 py-2 text-white">Top Rated</a>
-          <a href="shop.html" class="block px-10 py-2 text-white">Trending</a>
+          <a href="featured.html" class="block px-10 py-2 text-white">FEATURED</a>
+        </div>
+
+      </div>
+
+      <div id="navSearchBar" class="nav-search-bar hidden">
+        <div class="nav-search-inner">
+          <input id="navSearchInput" type="text" placeholder="Search products..." aria-label="Search products">
+          <button type="button" onclick="closeNavSearch()" aria-label="Close search">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
       </div>
+
     </div>
   </nav>
+
+    <div id="userSidebarOverlay" class="user-sidebar-overlay" onclick="closeUserSidebar()"></div>
+  <aside id="userSidebar" class="user-sidebar" aria-hidden="true">
+    <div class="user-sidebar-head">
+      <h3>Account</h3>
+      <button type="button" onclick="closeUserSidebar()" aria-label="Close sidebar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="user-sidebar-body">
+      <h4 class="user-auth-title">SIGN IN</h4>
+
+      <input type="email" class="user-auth-input" placeholder="Email*" aria-label="Email">
+
+      <div class="user-password-wrap">
+        <input id="sidebarPassword" type="password" class="user-auth-input" placeholder="Password*" aria-label="Password">
+        <button type="button" class="user-password-toggle" onclick="toggleSidebarPassword()" aria-label="Show password">
+          <i class="fa-regular fa-eye"></i>
+        </button>
+      </div>
+
+      <a href="#" class="user-forgot-link">Lost your password ?</a>
+
+      <div class="user-auth-actions">
+        <button type="button" class="user-auth-btn user-auth-btn-primary">SIGN IN</button>
+        <button type="button" class="user-auth-btn user-auth-btn-outline">CREATE YOUR ACCOUNT</button>
+      </div>
+    </div>
+  </aside>
 
   <section class="blog-hero">
     <div class="blog-hero-content">

@@ -83,6 +83,54 @@ function toggleMobileDropdown(id) {
     dropdown.classList.toggle("hidden", !isOpening);
 }
 
+function openUserSidebar() {
+    const sidebar = document.getElementById("userSidebar");
+    const overlay = document.getElementById("userSidebarOverlay");
+    if (!sidebar || !overlay) return;
+
+    sidebar.classList.add("is-open");
+    sidebar.setAttribute("aria-hidden", "false");
+    overlay.classList.add("is-visible");
+    document.body.classList.add("sidebar-open");
+}
+
+function closeUserSidebar() {
+    const sidebar = document.getElementById("userSidebar");
+    const overlay = document.getElementById("userSidebarOverlay");
+    if (!sidebar || !overlay) return;
+
+    sidebar.classList.remove("is-open");
+    sidebar.setAttribute("aria-hidden", "true");
+    overlay.classList.remove("is-visible");
+    document.body.classList.remove("sidebar-open");
+}
+
+function toggleSidebarPassword() {
+    const passwordInput = document.getElementById("sidebarPassword");
+    if (!passwordInput) return;
+
+    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+}
+
+function toggleNavSearch() {
+    const searchBar = document.getElementById("navSearchBar");
+    const searchInput = document.getElementById("navSearchInput");
+    if (!searchBar) return;
+
+    const isHidden = searchBar.classList.contains("hidden");
+    searchBar.classList.toggle("hidden", !isHidden);
+
+    if (isHidden) {
+        setTimeout(() => searchInput?.focus(), 0);
+    }
+}
+
+function closeNavSearch() {
+    const searchBar = document.getElementById("navSearchBar");
+    if (!searchBar) return;
+    searchBar.classList.add("hidden");
+}
+
 function setupProductCardNavigation() {
     const cards = document.querySelectorAll(".product-card");
 
@@ -406,6 +454,14 @@ document.addEventListener("DOMContentLoaded", () => {
         closeDesktopDropdowns();
         closeMobileDropdowns();
         document.getElementById("mobileMenu")?.classList.add("hidden");
+        closeNavSearch();
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeUserSidebar();
+            closeNavSearch();
+        }
     });
 });
 
@@ -455,7 +511,7 @@ if (productNameEl && productPriceEl && productImageEl) {
 if (typeof Swiper !== "undefined" && document.querySelector(".mySwiper")) {
     new Swiper(".mySwiper", {
         slidesPerView: 3,
-        spaceBetween: 30,
+        spaceBetween: 0,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
@@ -616,3 +672,27 @@ function setupBlogPageInteractions() {
 
     renderPosts();
 }
+
+// FOOTER IMG SLIDE
+var swiper = new Swiper(".mySwiper", {
+    loop: true,
+    spaceBetween: 20,
+
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+
+    // ✅ Responsive Breakpoints
+    breakpoints: {
+        0: {
+            slidesPerView: 1,   // 📱 Mobile → 1 image
+        },
+        640: {
+            slidesPerView: 2,   // 📲 Tablet → 2 images
+        },
+        1024: {
+            slidesPerView: 4,   // 💻 Desktop → 4 images (change if needed)
+        }
+    }
+});

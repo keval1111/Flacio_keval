@@ -39,8 +39,7 @@
               HOME <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="home" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Home 1</a></li>
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Home 2</a></li>
+              <li><a href="home.html" class="block px-4 py-2 hover:bg-gray-100">Home</a></li> 
             </ul>
           </li>
 
@@ -49,8 +48,7 @@
               SHOP <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="shop" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Indoor</a></li>
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Outdoor</a></li>
+              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">SHOP</a></li>             
             </ul>
           </li>
 
@@ -59,8 +57,7 @@
               PRODUCT <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="product" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+              <li><a href="product-detail.html" class="block px-4 py-2 hover:bg-gray-100">PRODUCT</a></li>             
             </ul>
           </li>
 
@@ -69,8 +66,7 @@
               BLOG <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="blog" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+              <li><a href="blog.html" class="block px-4 py-2 hover:bg-gray-100">BLOG</a></li>             
             </ul>
           </li>
 
@@ -79,8 +75,7 @@
               FEATURED <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="featured" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+              <li><a href="featured.html" class="block px-4 py-2 hover:bg-gray-100">FEATURED</a></li>
             </ul>
           </li>
         </ul>
@@ -90,10 +85,14 @@
         </div>
 
         <div class="hidden lg:flex items-center gap-6 text-lg text-white">
-          <i class="fa-solid fa-arrow-right-arrow-left"></i>
-          <i class="fa-brands fa-facebook-f"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-solid fa-plus"></i>
+          <button type="button" onclick="toggleNavSearch()" class="text-white hover:text-gray-300 transition" aria-label="Open search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button type="button" onclick="openUserSidebar()" class="text-white hover:text-gray-300 transition" aria-label="Open account sidebar">
+            <i class="fa-regular fa-circle-user"></i>
+          </button>
+          <i class="fa-regular fa-heart"></i>
+          <i class="fa-solid fa-cart-shopping"></i>
         </div>
       </div>
 
@@ -106,8 +105,7 @@
           HOME <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mhome" class="hidden bg-[#263037]">
-          <a href="#" class="block px-10 py-2 text-white">Home 1</a>
-          <a href="" class="block px-10 py-2 text-white">Home 2</a>
+          <a href="home.html" class="block px-10 py-2 text-white">HOME</a>
         </div>
 
         <!-- SHOP -->
@@ -116,8 +114,7 @@
           SHOP <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mshop" class="hidden bg-[#263037]">
-          <a href="" class="block px-10 py-2 text-white">Indoor</a>
-          <a href="" class="block px-10 py-2 text-white">Outdoor</a>
+          <a href="shop.html" class="block px-10 py-2 text-white">SHOP</a>
         </div>
 
         <!-- PRODUCT -->
@@ -126,8 +123,7 @@
           PRODUCT <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mproduct" class="hidden bg-[#263037]">
-          <a href="" class="block px-10 py-2 text-white">Product 1</a>
-          <a href="" class="block px-10 py-2 text-white">Product 2</a>
+          <a href="product-detail.html" class="block px-10 py-2 text-white">PRODUCT</a>
         </div>
 
         <button onclick="toggleMobileDropdown('mblog')"
@@ -135,8 +131,7 @@
           BLOG <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mblog" class="hidden bg-[#263037]">
-          <a href="" class="block px-10 py-2 text-white">Pr1</a>
-          <a href="" class="block px-10 py-2 text-white">Pr2</a>
+          <a href="blog.html" class="block px-10 py-2 text-white">BLOG</a>
         </div>
 
         <button onclick="toggleMobileDropdown('mfeatured')"
@@ -144,14 +139,51 @@
           FEATURED <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mfeatured" class="hidden bg-[#263037]">
-          <a href="" class="block px-10 py-2 text-white">Product 1</a>
-          <a href="" class="block px-10 py-2 text-white">Product 2</a>
+          <a href="featured.html" class="block px-10 py-2 text-white">FEATURED</a>
         </div>
 
       </div>
 
+      <div id="navSearchBar" class="nav-search-bar hidden">
+        <div class="nav-search-inner">
+          <input id="navSearchInput" type="text" placeholder="Search products..." aria-label="Search products">
+          <button type="button" onclick="closeNavSearch()" aria-label="Close search">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
     </div>
   </nav>
+
+<div id="userSidebarOverlay" class="user-sidebar-overlay" onclick="closeUserSidebar()"></div>
+  <aside id="userSidebar" class="user-sidebar" aria-hidden="true">
+    <div class="user-sidebar-head">
+      <h3>Account</h3>
+      <button type="button" onclick="closeUserSidebar()" aria-label="Close sidebar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="user-sidebar-body">
+      <h4 class="user-auth-title">SIGN IN</h4>
+
+      <input type="email" class="user-auth-input" placeholder="Email*" aria-label="Email">
+
+      <div class="user-password-wrap">
+        <input id="sidebarPassword" type="password" class="user-auth-input" placeholder="Password*" aria-label="Password">
+        <button type="button" class="user-password-toggle" onclick="toggleSidebarPassword()" aria-label="Show password">
+          <i class="fa-regular fa-eye"></i>
+        </button>
+      </div>
+
+      <a href="#" class="user-forgot-link">Lost your password ?</a>
+
+      <div class="user-auth-actions">
+        <button type="button" class="user-auth-btn user-auth-btn-primary">SIGN IN</button>
+        <button type="button" class="user-auth-btn user-auth-btn-outline">CREATE YOUR ACCOUNT</button>
+      </div>
+    </div>
+  </aside>
 
   <div class="container py-5">
   <div class="row g-4">

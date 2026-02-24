@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-
-  <title>Home</title>
+  <title>FLACIO</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
@@ -15,12 +14,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 
 <body>
 
-  <!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 <div class="container-fluid">
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -105,8 +103,7 @@
               HOME <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="home" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Home 1</a></li>
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Home 2</a></li>
+              <li><a href="home.html" class="block px-4 py-2 hover:bg-gray-100">Home</a></li> 
             </ul>
           </li>
 
@@ -115,8 +112,7 @@
               SHOP <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="shop" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Indoor</a></li>
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Outdoor</a></li>
+              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">SHOP</a></li>             
             </ul>
           </li>
 
@@ -125,8 +121,7 @@
               PRODUCT <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="product" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+              <li><a href="product-detail.html" class="block px-4 py-2 hover:bg-gray-100">PRODUCT</a></li>
             </ul>
           </li>
 
@@ -135,8 +130,7 @@
               BLOG <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="blog" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+              <li><a href="blog.html" class="block px-4 py-2 hover:bg-gray-100">BLOG</a></li>             
             </ul>
           </li>
 
@@ -145,8 +139,7 @@
               FEATURED <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="featured" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 1</a></li>
-              <li><a class="block px-4 py-2 hover:bg-gray-100">Product 2</a></li>
+              <li><a href="featured.html" class="block px-4 py-2 hover:bg-gray-100">FEATURED</a></li>
             </ul>
           </li>
         </ul>
@@ -156,10 +149,14 @@
         </div>
 
         <div class="hidden lg:flex items-center gap-6 text-lg text-white">
-          <i class="fa-solid fa-arrow-right-arrow-left"></i>
-          <i class="fa-brands fa-facebook-f"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-solid fa-plus"></i>
+          <button type="button" onclick="toggleNavSearch()" class="text-white hover:text-gray-300 transition" aria-label="Open search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button type="button" onclick="openUserSidebar()" class="text-white hover:text-gray-300 transition" aria-label="Open account sidebar">
+            <i class="fa-regular fa-circle-user"></i>
+          </button>
+          <i class="fa-regular fa-heart"></i>
+          <i class="fa-solid fa-cart-shopping"></i>
         </div>
       </div>
 
@@ -172,8 +169,7 @@
           HOME <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mhome" class="hidden bg-[#263037]">
-          <a href="#" class="block px-10 py-2 text-white">Home 1</a>
-          <a href="" class="block px-10 py-2 text-white">Home 2</a>
+          <a href="home.html" class="block px-10 py-2 text-white">HOME</a>
         </div>
 
         <!-- SHOP -->
@@ -182,8 +178,7 @@
           SHOP <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mshop" class="hidden bg-[#263037]">
-          <a href="" class="block px-10 py-2 text-white">Indoor</a>
-          <a href="" class="block px-10 py-2 text-white">Outdoor</a>
+          <a href="shop.html" class="block px-10 py-2 text-white">SHOP</a>
         </div>
 
         <!-- PRODUCT -->
@@ -192,8 +187,7 @@
           PRODUCT <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mproduct" class="hidden bg-[#263037]">
-          <a href="" class="block px-10 py-2 text-white">Product 1</a>
-          <a href="" class="block px-10 py-2 text-white">Product 2</a>
+          <a href="product-detail.html" class="block px-10 py-2 text-white">PRODUCT</a>
         </div>
 
         <button onclick="toggleMobileDropdown('mblog')"
@@ -201,8 +195,7 @@
           BLOG <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mblog" class="hidden bg-[#263037]">
-          <a href="" class="block px-10 py-2 text-white">Pr1</a>
-          <a href="" class="block px-10 py-2 text-white">Pr2</a>
+          <a href="blog.html" class="block px-10 py-2 text-white">BLOG</a>
         </div>
 
         <button onclick="toggleMobileDropdown('mfeatured')"
@@ -210,20 +203,52 @@
           FEATURED <i class="fa fa-chevron-down float-right"></i>
         </button>
         <div id="mfeatured" class="hidden bg-[#263037]">
-          <a href="" class="block px-10 py-2 text-white">Product 1</a>
-          <a href="" class="block px-10 py-2 text-white">Product 2</a>
+          <a href="featured.html" class="block px-10 py-2 text-white">FEATURED</a>
         </div>
 
+      </div>
+
+      <div id="navSearchBar" class="nav-search-bar hidden">
+        <div class="nav-search-inner">
+          <input id="navSearchInput" type="text" placeholder="Search products..." aria-label="Search products">
+          <button type="button" onclick="closeNavSearch()" aria-label="Close search">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
       </div>
 
     </div>
   </nav>
 
-  <!-- ✅ JAVASCRIPT -->
-  <script>
+  <div id="userSidebarOverlay" class="user-sidebar-overlay" onclick="closeUserSidebar()"></div>
+  <aside id="userSidebar" class="user-sidebar" aria-hidden="true">
+    <div class="user-sidebar-head">
+      <h3>Account</h3>
+      <button type="button" onclick="closeUserSidebar()" aria-label="Close sidebar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="user-sidebar-body">
+      <h4 class="user-auth-title">SIGN IN</h4>
 
-  </script>
+      <input type="email" class="user-auth-input" placeholder="Email*" aria-label="Email">
 
+      <div class="user-password-wrap">
+        <input id="sidebarPassword" type="password" class="user-auth-input" placeholder="Password*" aria-label="Password">
+        <button type="button" class="user-password-toggle" onclick="toggleSidebarPassword()" aria-label="Show password">
+          <i class="fa-regular fa-eye"></i>
+        </button>
+      </div>
+
+      <a href="#" class="user-forgot-link">Lost your password ?</a>
+
+      <div class="user-auth-actions">
+        <button type="button" class="user-auth-btn user-auth-btn-primary">SIGN IN</button>
+        <button type="button" class="user-auth-btn user-auth-btn-outline">CREATE YOUR ACCOUNT</button>
+      </div>
+    </div>
+  </aside>
+  
   <!-- <div class="containe"> -->
 
   <section class="relative min-h-screen">
@@ -241,10 +266,8 @@
             Patch helps you discover the best plants for your space.
           </p>
           <div class="cta-group">
-            <button
-              class="cta-btn px-10 py-6 bg-white text-gray-800 text-lg hover:bg-black hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-300">Shop
-              indoor</button>
-            <button class="cta-btn bg-white text-black px-8 py-3 hover:bg-green hover:text-white">Shop outdoor</button>
+            <button class="cta-btn hero-cta bg-white text-black px-8 py-3">Shop indoor</button>
+            <button class="cta-btn hero-cta bg-white text-black px-8 py-3">Shop outdoor</button>
           </div>
         </div>
       </div>
@@ -259,8 +282,8 @@
             Patch helps you discover the best plants for your space.
           </p>
           <div class="cta-group">
-            <button class="cta-btn bg-white text-black px-8 py-3">Shop indoor</button>
-            <button class="cta-btn bg-white text-black px-8 py-3">Shop outdoor</button>
+            <button class="cta-btn hero-cta bg-white text-black px-8 py-3">Shop indoor</button>
+            <button class="cta-btn hero-cta bg-white text-black px-8 py-3">Shop outdoor</button>
           </div>
         </div>
       </div>
@@ -275,8 +298,8 @@
             Patch helps you discover the best plants for your space.
           </p>
           <div class="cta-group">
-            <button class="cta-btn bg-white text-black px-8 py-3">Shop indoor</button>
-            <button class="cta-btn bg-white text-black px-8 py-3">Shop outdoor</button>
+            <button class="cta-btn hero-cta bg-white text-black px-8 py-3">Shop indoor</button>
+            <button class="cta-btn hero-cta bg-white text-black px-8 py-3">Shop outdoor</button>
           </div>
         </div>
       </div>
@@ -303,39 +326,42 @@
       <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3">
 
         <!-- CARD 1 -->
-        <div class="relative h-80 bg-cover bg-center" style="background-image:url('img/banner-1.webp')">
+        <div class="promo-card relative h-80 overflow-hidden">
+          <div class="promo-bg absolute inset-0 bg-cover bg-center" style="background-image:url('img/banner-1.webp')"></div>
 
           <div class="absolute inset-0 bg-black/10"></div>
 
           <div class="relative h-full flex flex-col justify-end p-8 text-black">
             <h3 class="text-3xl font-serif mb-2">New Arrivals</h3>
-            <a href="#" class="text-sm border-b border-black w-fit">
+            <a href="#" class="text-sm w-fit underline">
               Shop Now
             </a>
           </div>
         </div>
 
         <!-- CARD 2 -->
-        <div class="relative h-80 bg-cover bg-center" style="background-image:url('img/banner-2.jpg')">
+        <div class="promo-card relative h-80 overflow-hidden">
+          <div class="promo-bg absolute inset-0 bg-cover bg-center" style="background-image:url('img/banner-2.jpg')"></div>
 
           <div class="absolute inset-0 bg-black/10"></div>
 
           <div class="relative h-full flex flex-col justify-end p-8 text-black text-center">
             <h3 class="text-2xl font-serif mb-2">Gift Green</h3>
-            <a href="#" class="text-sm border-b border-black mx-auto w-fit">
+            <a href="#" class="text-sm mx-auto w-fit underline">
               Shop Now
             </a>
           </div>
         </div>
 
         <!-- CARD 3 -->
-        <div class="relative h-80 bg-cover bg-center" style="background-image:url('img/banner-3.jpg')">
+        <div class="promo-card relative h-80 overflow-hidden">
+          <div class="promo-bg absolute inset-0 bg-cover bg-center" style="background-image:url('img/banner-3.jpg')"></div>
 
           <div class="absolute inset-0 bg-black/10"></div>
 
           <div class="relative h-full flex flex-col justify-end p-8 text-black">
             <h3 class="text-3xl font-serif mb-2">Home Grown</h3>
-            <a href="#" class="text-sm border-b border-black w-fit">
+            <a href="#" class="text-sm w-fit underline">
               Shop Now
             </a>
           </div>
@@ -921,19 +947,43 @@
     </section>
   </div>
 
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="img/ig-2_540x.webp"></div>
-      <div class="swiper-slide"><img src="img/ig-3_540x.webp"></div>
-      <div class="swiper-slide"><img src="img/ig-4_540x.webp"></div>
-      <div class="swiper-slide"><img src="img/ig-5_540x.webp"></div>
-      <div class="swiper-slide"><img src="img/ig-1_540x.webp"></div>
+    <div class="text-center mb-12 mt-5">
+      <h2 class="text-4xl md:text-5xl font-light tracking-wide">
+        #bring<span class="italic">life</span>in
+      </h2>
+
+      <p class="text-gray-500 mt-4 text-lg">
+        Our community has a thing for plant styling. Get inspired.
+      </p>
     </div>
-    <div class="swiper-pagination"></div>
-  </div>
+
+   <div class="swiper mySwiper py-10">
+     <div class="swiper-wrapper">
+       <div class="swiper-slide">
+         <img src="img/ig-2_540x.webp" class="w-full h-auto object-cover">
+       </div>
+   
+       <div class="swiper-slide">
+         <img src="img/ig-3_540x.webp" class="w-full h-auto object-cover">
+       </div>
+   
+       <div class="swiper-slide">
+         <img src="img/ig-4_540x.webp" class="w-full h-auto object-cover">
+       </div>
+   
+       <div class="swiper-slide">
+         <img src="img/ig-5_540x.webp" class="w-full h-auto object-cover">
+       </div>
+   
+       <div class="swiper-slide">
+         <img src="img/ig-1_540x.webp" class="w-full h-auto object-cover">
+       </div>
+     </div>
+     <div class="swiper-pagination"></div>
+   </div>
 
   <div class="container">
-    <section class="bg-gray-100 py-10 px-6">
+    <section class="bg-gray-100 py-10 px-6 mt-5">
 
       <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
