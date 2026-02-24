@@ -160,6 +160,7 @@ function setupProductCardNavigation() {
 }
 
 const WISHLIST_STORAGE_KEY = "flacio_wishlist";
+const CART_STORAGE_KEY = "flacio_cart";
 
 function getWishlistItems() {
     try {
@@ -267,6 +268,212 @@ function setupWishlistInteractions() {
         }
 
         setWishlistItems(items);
+    });
+}
+
+function getCartItems() {
+    try {
+        const raw = localStorage.getItem(CART_STORAGE_KEY);
+        if (!raw) return [];
+
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function setCartItems(items) {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    updateCartCountBadges(items.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0));
+}
+
+function parseNumberFromPrice(priceText) {
+    const numeric = Number((priceText || "").replace(/[^0-9.]/g, ""));
+    return Number.isNaN(numeric) ? 0 : numeric;
+}
+
+function formatPrice(value) {
+    return `$${Number(value || 0).toFixed(2)}`;
+}
+
+function getProductFromPdp() {
+    const name = document.getElementById("productName")?.textContent?.trim() || "Product";
+    const price = document.getElementById("productPrice")?.textContent?.trim() || "$0.00";
+    const image = document.getElementById("mainImage")?.getAttribute("src") || document.getElementById("productImage")?.getAttribute("src") || "";
+    const qtyInput = document.getElementById("qty");
+    const quantity = Math.max(1, parseInt(qtyInput?.value || "1", 10) || 1);
+
+    return {
+        id: makeWishlistId(name, image, price),
+        name,
+        price,
+        image,
+        hoverImage: image,
+        quantity
+    };
+}
+
+function getCartProductFromTrigger(trigger) {
+    if (trigger.hasAttribute("data-cart-button")) {
+        return getProductFromPdp();
+    }
+
+    const product = extractWishlistProduct(trigger);
+    if (!product) return null;
+
+    return {
+        ...product,
+        quantity: 1
+    };
+}
+
+function addToCart(product) {
+    if (!product) return;
+
+    const items = getCartItems();
+    const index = items.findIndex((item) => item.id === product.id);
+
+    if (index > -1) {
+        const nextQty = (Number(items[index].quantity) || 0) + (Number(product.quantity) || 1);
+        items[index].quantity = Math.max(1, nextQty);
+    } else {
+        items.push({
+            ...product,
+            quantity: Math.max(1, Number(product.quantity) || 1)
+        });
+    }
+
+    setCartItems(items);
+}
+
+function markCartTriggers() {
+    document.querySelectorAll(".action-icons a").forEach((anchor) => {
+        if (!anchor.querySelector(".fa-cart-shopping")) return;
+        anchor.setAttribute("data-cart-trigger", "true");
+        anchor.setAttribute("aria-label", "Add to cart");
+    });
+
+    const pdpAddButton = document.querySelector(".add-btn");
+    if (pdpAddButton) {
+        pdpAddButton.setAttribute("data-cart-button", "true");
+        pdpAddButton.setAttribute("type", "button");
+    }
+}
+
+function setupCartInteractions() {
+    markCartTriggers();
+    updateCartCountBadges();
+
+    document.addEventListener("click", (event) => {
+        const trigger = event.target.closest("[data-cart-trigger], [data-cart-button]");
+        if (!trigger) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const product = getCartProductFromTrigger(trigger);
+        addToCart(product);
+    });
+}
+
+function updateCartCountBadges(forcedCount) {
+    const count = Number.isInteger(forcedCount)
+        ? forcedCount
+        : getCartItems().reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
+
+    const navCartLinks = Array.from(document.querySelectorAll("a[href='cart.html']"))
+        .filter((link) => link.querySelector("i.fa-cart-shopping"));
+
+    navCartLinks.forEach((link) => {
+        link.classList.add("cart-nav-link");
+
+        let badge = link.querySelector(".cart-count-badge");
+        if (!badge) {
+            badge = document.createElement("span");
+            badge.className = "cart-count-badge";
+            link.appendChild(badge);
+        }
+
+        badge.textContent = String(count);
+        badge.classList.toggle("is-hidden", count < 1);
+    });
+}
+
+function renderCartPage() {
+    const cartGrid = document.getElementById("cartGrid");
+    const cartCount = document.getElementById("cartCount");
+    const cartEmpty = document.getElementById("cartEmpty");
+    const cartSubtotal = document.getElementById("cartSubtotal");
+    if (!cartGrid || !cartCount || !cartEmpty || !cartSubtotal) return;
+
+    const items = getCartItems();
+    const totalQty = items.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
+    const subtotal = items.reduce((sum, item) => sum + (parseNumberFromPrice(item.price) * (Number(item.quantity) || 0)), 0);
+
+    cartCount.textContent = `${totalQty} item${totalQty === 1 ? "" : "s"}`;
+    cartSubtotal.textContent = formatPrice(subtotal);
+
+    if (!items.length) {
+        cartGrid.innerHTML = "";
+        cartEmpty.classList.remove("hidden");
+        return;
+    }
+
+    cartEmpty.classList.add("hidden");
+    cartGrid.innerHTML = items.map((item) => {
+        const detailUrl = `product-detail.html?name=${encodeURIComponent(item.name)}&price=${encodeURIComponent(item.price)}&image=${encodeURIComponent(item.image)}`;
+        const unitPrice = parseNumberFromPrice(item.price);
+        const lineTotal = unitPrice * (Number(item.quantity) || 0);
+
+        return `
+        <div class="col-12" data-cart-id="${item.id}">
+          <div class="cart-line-item d-flex flex-column flex-md-row align-items-center gap-4 p-3 border rounded bg-white">
+            <div class="product-card bg-gray-100 p-2" style="width: 140px;">
+              <img src="${item.image}" class="w-full main-img" alt="${item.name}">
+              <img src="${item.hoverImage || item.image}" class="w-full hover-img" alt="${item.name}">
+            </div>
+            <div class="flex-grow-1 text-center text-md-start">
+              <h5 class="mb-1">${item.name}</h5>
+              <p class="mb-2 text-muted">Unit Price: ${item.price}</p>
+              <p class="mb-0 fw-semibold">Line Total: ${formatPrice(lineTotal)}</p>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button class="btn btn-outline-secondary btn-sm" data-cart-dec="true" type="button">-</button>
+              <span class="px-2 fw-semibold">${Math.max(1, Number(item.quantity) || 1)}</span>
+              <button class="btn btn-outline-secondary btn-sm" data-cart-inc="true" type="button">+</button>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <a href="${detailUrl}" class="btn btn-outline-dark btn-sm" type="button">View</a>
+              <button class="btn btn-danger btn-sm" data-cart-remove="true" type="button">Remove</button>
+            </div>
+          </div>
+        </div>`;
+    }).join("");
+
+    cartGrid.querySelectorAll("[data-cart-remove], [data-cart-inc], [data-cart-dec]").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            const card = button.closest("[data-cart-id]");
+            const id = card?.getAttribute("data-cart-id");
+            if (!id) return;
+
+            const itemsNext = getCartItems();
+            const index = itemsNext.findIndex((item) => item.id === id);
+            if (index < 0) return;
+
+            if (button.hasAttribute("data-cart-remove")) {
+                itemsNext.splice(index, 1);
+            } else if (button.hasAttribute("data-cart-inc")) {
+                itemsNext[index].quantity = Math.max(1, (Number(itemsNext[index].quantity) || 1) + 1);
+            } else if (button.hasAttribute("data-cart-dec")) {
+                const nextQty = Math.max(1, (Number(itemsNext[index].quantity) || 1) - 1);
+                itemsNext[index].quantity = nextQty;
+            }
+
+            setCartItems(itemsNext);
+            renderCartPage();
+        });
     });
 }
 
@@ -634,8 +841,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setupShopPageInteractions();
     setupBlogPageInteractions();
     setupWishlistInteractions();
+    setupCartInteractions();
     renderWishlistPage();
+    renderCartPage();
     updateWishlistCountBadges();
+    updateCartCountBadges();
 
     document.addEventListener("click", (event) => {
         if (event.target.closest("nav")) return;
@@ -655,10 +865,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.addEventListener("storage", (event) => {
-    if (event.key !== WISHLIST_STORAGE_KEY) return;
-    updateWishlistCountBadges();
-    syncWishlistIcons();
-    renderWishlistPage();
+    if (event.key === WISHLIST_STORAGE_KEY) {
+        updateWishlistCountBadges();
+        syncWishlistIcons();
+        renderWishlistPage();
+    }
+
+    if (event.key === CART_STORAGE_KEY) {
+        updateCartCountBadges();
+        renderCartPage();
+    }
 });
 
 // Auto slide
