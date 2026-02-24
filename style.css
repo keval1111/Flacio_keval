@@ -307,6 +307,47 @@ img {
     color: #fff;
   }
 
+  .action-icons a.is-active {
+    background: #2f855a;
+    color: #fff;
+  }
+
+  .wishlist-empty {
+    border: 1px dashed #c9ced4;
+    padding: 60px 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #59606a;
+    background: #f6f7f8;
+  }
+
+  .wishlist-nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wishlist-count-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: #dc2626;
+    color: #fff;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .wishlist-count-badge.is-hidden {
+    display: none;
+  }
+
   .testimonial-bg {
     background-image: url('img/bg-1.webp');
     background-size: cover;

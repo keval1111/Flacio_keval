@@ -91,7 +91,7 @@
           <button type="button" onclick="openUserSidebar()" class="text-white hover:text-gray-300 transition" aria-label="Open account sidebar">
             <i class="fa-regular fa-circle-user"></i>
           </button>
-          <i class="fa-regular fa-heart"></i>
+          <a href="wishlist.html" aria-label="Open wishlist"><i class="fa-regular fa-heart"></i></a>
           <i class="fa-solid fa-cart-shopping"></i>
         </div>
       </div>
@@ -195,14 +195,14 @@
 
         <!-- Thumbnails -->
         <div class="flex flex-col gap-4">
-          <img src="img1.jpg" class="thumb" onclick="changeImage(this)">
-          <img src="img2.jpg" class="thumb" onclick="changeImage(this)">
-          <img src="img3.jpg" class="thumb" onclick="changeImage(this)">
+          <img src="img/10-2_600x.webp" class="thumb" onclick="changeImage(this)" alt="Product thumbnail 1">
+          <img src="img/10-6_540x.webp" class="thumb" onclick="changeImage(this)" alt="Product thumbnail 2">
+          <img src="img/10-5_1080x1080.webp" class="thumb" onclick="changeImage(this)" alt="Product thumbnail 3">
         </div>
 
         <!-- Main Image -->
         <div class="flex-1">
-          <img id="mainImage" src="img1.jpg" class="w-full rounded">
+          <img id="mainImage" src="img/10-2_600x.webp" class="w-full rounded" alt="Product image">
         </div>
 
       </div>
@@ -212,12 +212,12 @@
     <!-- RIGHT CONTENT SECTION -->
     <div class="col-lg-5">
 
-      <h2 class="text-3xl font-semibold mb-3">Ruby Rubber Tree</h2>
+      <h2 id="productName" class="text-3xl font-semibold mb-3">Ruby Rubber Tree</h2>
 
       <!-- Price -->
       <div class="flex items-center gap-3 mb-3">
         <span class="text-gray-400 line-through text-xl">$90.00</span>
-        <span class="text-green-700 text-2xl font-bold">$52.00</span>
+        <span id="productPrice" class="text-green-700 text-2xl font-bold">$52.00</span>
       </div>
 
       <!-- Info -->
@@ -241,7 +241,7 @@
       <div class="flex items-center gap-3 mb-4">
         <div class="qty-box">
           <button onclick="minus()">-</button>
-          <input id="qty" value="1">
+          <input id="qty" type="number" min="1" value="1">
           <button onclick="plus()">+</button>
         </div>
 
