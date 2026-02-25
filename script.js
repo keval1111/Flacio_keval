@@ -838,6 +838,7 @@ function setupShopPageInteractions() {
 document.addEventListener("DOMContentLoaded", () => {
     showTab("top");
     setupProductCardNavigation();
+    setupProductDetailTabs();
     setupShopPageInteractions();
     setupBlogPageInteractions();
     setupWishlistInteractions();
@@ -972,6 +973,31 @@ function minus() {
     }
 
     q.value = current - 1;
+}
+
+function setupProductDetailTabs() {
+    const tabButtons = Array.from(document.querySelectorAll("[data-pd-tab]"));
+    const tabPanes = Array.from(document.querySelectorAll("[data-pd-pane]"));
+    if (!tabButtons.length || !tabPanes.length) return;
+
+    tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const target = button.getAttribute("data-pd-tab");
+            if (!target) return;
+
+            tabButtons.forEach((tab) => {
+                const isActive = tab === button;
+                tab.classList.toggle("is-active", isActive);
+                tab.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
+
+            tabPanes.forEach((pane) => {
+                const isActive = pane.getAttribute("data-pd-pane") === target;
+                pane.classList.toggle("is-active", isActive);
+                pane.hidden = !isActive;
+            });
+        });
+    });
 }
 
 // blog
