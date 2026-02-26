@@ -841,6 +841,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setupProductDetailTabs();
     setupShopPageInteractions();
     setupBlogPageInteractions();
+    setupBlogPostNavigation();
+    renderBlogDetailPage();
     setupWishlistInteractions();
     setupCartInteractions();
     renderWishlistPage();
@@ -1137,6 +1139,489 @@ function setupBlogPageInteractions() {
     }
 
     renderPosts();
+}
+
+function setupBlogPostNavigation() {
+    const posts = Array.from(document.querySelectorAll(".blog-post-card"));
+    if (!posts.length) return;
+
+    function getPostPayload(post) {
+        const title = (post.dataset.title || post.querySelector("h2")?.textContent || "Blog Post").trim();
+        const image = post.querySelector(".blog-post-image")?.getAttribute("src") || "";
+        const date = post.querySelector(".blog-post-date")?.textContent?.trim() || "";
+        const excerpt = post.querySelector("p")?.textContent?.trim() || "";
+
+        const metaSpans = Array.from(post.querySelectorAll(".blog-post-meta span")).map((item) => item.textContent?.trim() || "");
+        const authorText = metaSpans.find((item) => /^by:/i.test(item)) || "By: Flacio Desk";
+        const author = authorText.replace(/^by:\s*/i, "").trim();
+        const comments = (metaSpans.find((item) => /comments?/i.test(item)) || "0 comments").trim();
+        const category = (metaSpans.find((item) => !/^by:/i.test(item) && !/comments?/i.test(item)) || post.dataset.category || "Life Style").trim();
+
+        return { title, image, date, excerpt, author, comments, category };
+    }
+
+    function openPostDetail(post) {
+        const payload = getPostPayload(post);
+        const params = new URLSearchParams({
+            title: payload.title,
+            image: payload.image,
+            date: payload.date,
+            excerpt: payload.excerpt,
+            author: payload.author,
+            comments: payload.comments,
+            category: payload.category
+        });
+
+        window.location.href = `blog-detail.html?${params.toString()}`;
+    }
+
+    posts.forEach((post) => {
+        const image = post.querySelector(".blog-post-image");
+        const title = post.querySelector("h2");
+        const readMore = post.querySelector(".blog-read-more");
+
+        [image, title, readMore].forEach((target) => {
+            if (!target) return;
+
+            if (target.tagName === "A") {
+                target.setAttribute("href", "#");
+            }
+
+            target.style.cursor = "pointer";
+            target.addEventListener("click", (event) => {
+                event.preventDefault();
+                openPostDetail(post);
+            });
+        });
+    });
+}
+
+function renderBlogDetailPage() {
+    const detailPage = document.querySelector(".blog-detail-page");
+    if (!detailPage) return;
+
+    const posts = [
+        {
+            title: "Traveling Solo Is Awesome",
+            image: "img/blog-4_1296x.webp",
+            date: "Sep 30, 2024",
+            author: "Tung Hoang",
+            category: "News",
+            categoryKey: "news",
+            detailCategory: "indoor-plants",
+            tags: ["baber", "beauty", "hot", "simple"],
+            excerpt: "Quisque elementum nibh at dolor pellentesque, a eleifend libero pharetra. Mauris neque felis, volutpat nec ullamcorper eget.",
+            body: [
+                "Quisque elementum nibh at dolor pellentesque, a eleifend libero pharetra. Mauris neque felis, volutpat nec ullamcorper eget, sagittis vel enim.",
+                "Lorem quasi aliquid maiores iusto suscipit perspiciatis a aspernatur et fuga repudiandae deleniti excepturi nesciunt animi reprehenderit similique sit.",
+                "Donec sed tincidunt lacus. Duis vehicula aliquam vestibulum. Aenean at mollis mi. Cras ac urna sed nisi auctor venenatis ut id sapien."
+            ],
+            quote: {
+                text: "Maecenas semper aliquam massa. Praesent pharetra sem vitae nisi eleifend molestie. Aliquam molestie scelerisque ultricies.",
+                author: "Robert Smith"
+            },
+            comments: [
+                { name: "wer", date: "October 11, 2025", message: "wefgv" },
+                { name: "ya", date: "October 9, 2025", message: "edwee" }
+            ]
+        },
+        {
+            title: "Indoor Plants Are Good For Health.",
+            image: "img/blog-3_1296x.webp",
+            date: "Oct 04, 2024",
+            author: "Team Flacio",
+            category: "News",
+            categoryKey: "news",
+            detailCategory: "air-purifying",
+            tags: ["organic", "new", "beauty"],
+            excerpt: "Integer hendrerit velit vel turpis feugiat, non fringilla massa iaculis. Etiam in faucibus lectus.",
+            body: [
+                "Indoor plants can improve comfort by balancing humidity and adding visual calm to daily spaces.",
+                "Pick low-maintenance varieties if your routine is busy, then build a consistent watering schedule.",
+                "Position plants where they receive stable light and keep airflow around leaves to avoid pests."
+            ],
+            quote: {
+                text: "The healthiest spaces are built with small habits repeated consistently.",
+                author: "Flacio Team"
+            },
+            comments: [
+                { name: "nina", date: "October 7, 2025", message: "Great practical tips." }
+            ]
+        },
+        {
+            title: "What Is The Best Plant For You?",
+            image: "img/blog-1_1296x.webp",
+            date: "Oct 08, 2024",
+            author: "Flacio Desk",
+            category: "Life Style",
+            categoryKey: "life-style",
+            detailCategory: "low-maintenance",
+            tags: ["simple", "baby-needs", "new"],
+            excerpt: "Praesent bibendum orci sed sem ultrices, at dapibus elit ullamcorper.",
+            body: [
+                "The best plant is the one that matches your home light and your weekly routine.",
+                "Before buying, check sunlight hours, room temperature, and how often you can water.",
+                "Start with one forgiving plant, then expand as your care rhythm becomes stable."
+            ],
+            quote: {
+                text: "Choose plants for your lifestyle first, aesthetics second.",
+                author: "Garden Notes"
+            },
+            comments: [
+                { name: "mira", date: "October 5, 2025", message: "This helped me choose my first plant." }
+            ]
+        },
+        {
+            title: "The Best Tree Care Tips For You",
+            image: "img/blog-4_1296x.webp",
+            date: "September 30, 2024",
+            author: "Tung Hoang",
+            category: "Life Style",
+            categoryKey: "life-style",
+            detailCategory: "plant-bundle",
+            tags: ["organic", "beauty", "new"],
+            excerpt: "Quisque elementum nibh at dolor pellentesque, a eleifend libero pharetra. Mauris neque felis, volutpat nec ullamcorper.",
+            body: [
+                "Healthy trees start with consistent watering and seasonal pruning. Focus on removing weak branches first.",
+                "Mulch helps lock in moisture and regulate root temperature. Keep mulch away from the trunk.",
+                "Feed slowly during growth periods and monitor leaf color, spotting, and texture."
+            ],
+            quote: {
+                text: "Stronger plants come from regular care, not occasional overcorrection.",
+                author: "Flacio Desk"
+            },
+            comments: []
+        },
+        {
+            title: "How To Style Indoor Corners With Plants",
+            image: "img/blog-3_1296x.webp",
+            date: "October 04, 2024",
+            author: "Team Flacio",
+            category: "Fashion",
+            categoryKey: "fashion",
+            detailCategory: "ceramic-pots",
+            tags: ["beauty", "simple"],
+            excerpt: "Integer hendrerit velit vel turpis feugiat, non fringilla massa iaculis. Etiam in faucibus lectus.",
+            body: [
+                "Start with one hero plant in a textured pot and add two smaller layers at different heights.",
+                "Use shelves or stools to avoid a flat arrangement and mix leaf shapes for contrast.",
+                "Keep wall tones neutral so greenery remains the primary visual element."
+            ],
+            quote: {
+                text: "Corners become intentional when height, shape, and light are balanced.",
+                author: "Team Flacio"
+            },
+            comments: [
+                { name: "rose", date: "October 4, 2025", message: "Love this styling idea." },
+                { name: "jon", date: "October 6, 2025", message: "Worked perfectly for my studio room." }
+            ]
+        },
+        {
+            title: "New Seasonal Collection Is Live",
+            image: "img/blog-6_1296x.webp",
+            date: "October 08, 2024",
+            author: "Flacio Desk",
+            category: "News",
+            categoryKey: "news",
+            detailCategory: "herb-seeds",
+            tags: ["new", "baby-needs"],
+            excerpt: "Praesent bibendum orci sed sem ultrices, at dapibus elit ullamcorper. Integer eu urna sodales.",
+            body: [
+                "Our seasonal collection introduces fresh foliage, low-maintenance planters, and compact sets.",
+                "Each plant is selected for resilience and visual impact in homes and offices.",
+                "Shop early to access limited seasonal varieties before they sell out."
+            ],
+            quote: {
+                text: "Seasonal releases are curated for both style and daily practicality.",
+                author: "Flacio Updates"
+            },
+            comments: [
+                { name: "amy", date: "October 8, 2025", message: "Waiting for this launch." },
+                { name: "kai", date: "October 10, 2025", message: "Great new lineup." },
+                { name: "sia", date: "October 12, 2025", message: "Ordered the compact set." }
+            ]
+        },
+        {
+            title: "Urban Balcony Planting Trends 2024",
+            image: "img/blog-2_1296x.webp",
+            date: "October 12, 2024",
+            author: "Flacio Desk",
+            category: "News",
+            categoryKey: "news",
+            detailCategory: "air-purifying",
+            tags: ["new", "organic"],
+            excerpt: "Donec blandit sem in lacus ultricies, et aliquet diam elementum. Sed luctus eros in mauris feugiat porttitor.",
+            body: [
+                "Balcony gardening trends now prioritize modular planters and mixed-height layouts.",
+                "Hardy species that tolerate heat and wind are ideal for compact urban spaces.",
+                "Pair decorative pots with practical drip trays to keep maintenance simple."
+            ],
+            quote: {
+                text: "A productive balcony starts with structure first, then variety.",
+                author: "Urban Grow Notes"
+            },
+            comments: [
+                { name: "harry", date: "October 13, 2025", message: "Very useful for small balconies." },
+                { name: "mina", date: "October 14, 2025", message: "The modular setup tip is great." },
+                { name: "leo", date: "October 14, 2025", message: "Clear and practical." },
+                { name: "nora", date: "October 15, 2025", message: "Trying this layout this weekend." },
+                { name: "vic", date: "October 16, 2025", message: "Loved this article." }
+            ]
+        },
+        {
+            title: "Flacio Community Green Week Highlights",
+            image: "img/blog-1_1296x.webp",
+            date: "October 16, 2024",
+            author: "Flacio Updates",
+            category: "News",
+            categoryKey: "news",
+            detailCategory: "plant-bundle",
+            tags: ["new", "beauty"],
+            excerpt: "Vivamus finibus, arcu in vulputate vestibulum, nunc ipsum luctus lorem, non lacinia libero mi eget odio.",
+            body: [
+                "Green Week brought together the community for repotting, pruning, and styling workshops.",
+                "Participants shared practical routines and before-and-after plant setups.",
+                "Monthly sessions will continue with guided care tips and curated bundles."
+            ],
+            quote: {
+                text: "Community learning turns plant care into a lasting habit.",
+                author: "Flacio Community"
+            },
+            comments: [
+                { name: "dina", date: "October 16, 2025", message: "Excited for the next event." },
+                { name: "ali", date: "October 17, 2025", message: "Workshops were excellent." },
+                { name: "josh", date: "October 18, 2025", message: "Please share the next schedule." },
+                { name: "eva", date: "October 18, 2025", message: "Loved the repotting session." },
+                { name: "ian", date: "October 19, 2025", message: "Great community vibe." },
+                { name: "tara", date: "October 19, 2025", message: "Thanks for organizing this." },
+                { name: "noah", date: "October 20, 2025", message: "Very inspiring event." }
+            ]
+        }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const queryTitle = (params.get("title") || "").trim().toLowerCase();
+    const matchedPost = posts.find((post) => post.title.toLowerCase() === queryTitle) || posts[0];
+    const activePost = {
+        ...matchedPost,
+        title: params.get("title") || matchedPost.title,
+        image: params.get("image") || matchedPost.image,
+        date: params.get("date") || matchedPost.date,
+        author: params.get("author") || matchedPost.author,
+        category: params.get("category") || matchedPost.category,
+        excerpt: params.get("excerpt") || matchedPost.excerpt
+    };
+
+    const titleEl = document.getElementById("blogDetailTitle");
+    const imageEl = document.getElementById("blogDetailImage");
+    const dateEl = document.getElementById("blogDetailDate");
+    const authorEl = document.getElementById("blogDetailAuthor");
+    const commentsEl = document.getElementById("blogDetailComments");
+    const categoryEl = document.getElementById("blogDetailCategory");
+    const excerptEl = document.getElementById("blogDetailExcerpt");
+    const bodyEl = document.getElementById("blogDetailBody");
+    const quoteTextEl = document.getElementById("blogDetailQuoteText");
+    const quoteAuthorEl = document.getElementById("blogDetailQuoteAuthor");
+    const tagsEl = document.getElementById("blogDetailPostTags");
+    const relatedListEl = document.getElementById("blogDetailRelatedList");
+    const commentsHeadingEl = document.getElementById("blogDetailCommentsHeading");
+    const commentsListEl = document.getElementById("blogDetailCommentsList");
+    const prevLinkEl = document.getElementById("blogDetailPrevLink");
+    const categoryButtons = Array.from(document.querySelectorAll("[data-detail-category]"));
+    const tagButtons = Array.from(document.querySelectorAll("[data-detail-tag]"));
+    const searchInput = document.getElementById("blogDetailSearchInput");
+    const searchBtn = document.getElementById("blogDetailSearchBtn");
+    const commentForm = document.getElementById("blogDetailCommentForm");
+    const commentName = document.getElementById("blogCommentName");
+    const commentEmail = document.getElementById("blogCommentEmail");
+    const commentMessage = document.getElementById("blogCommentMessage");
+    const commentNotice = document.getElementById("blogCommentFormNotice");
+
+    const commentState = [...matchedPost.comments];
+    const urlCommentCount = parseInt((params.get("comments") || "0").replace(/\D/g, ""), 10);
+    if (Number.isFinite(urlCommentCount) && urlCommentCount >= 0) {
+        if (urlCommentCount < commentState.length) {
+            commentState.splice(urlCommentCount);
+        } else if (urlCommentCount > commentState.length) {
+            for (let i = commentState.length; i < urlCommentCount; i += 1) {
+                commentState.push({
+                    name: `Guest ${i + 1}`,
+                    date: activePost.date,
+                    message: "Thanks for sharing this article."
+                });
+            }
+        }
+    }
+
+    function getCommentLabel(total) {
+        return `${total} comment${total === 1 ? "" : "s"}`;
+    }
+
+    function escapeHtml(value) {
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+    }
+
+    function toQuery(post) {
+        return new URLSearchParams({
+            title: post.title,
+            image: post.image,
+            date: post.date,
+            excerpt: post.excerpt,
+            author: post.author,
+            comments: getCommentLabel(post.comments.length),
+            category: post.category
+        });
+    }
+
+    function openPost(post) {
+        window.location.href = `blog-detail.html?${toQuery(post).toString()}`;
+    }
+
+    function renderRelatedPosts(queryText = "") {
+        if (!relatedListEl) return;
+
+        const query = (queryText || "").trim().toLowerCase();
+        const relatedPosts = posts
+            .filter((post) => post.title !== matchedPost.title)
+            .filter((post) => !query || post.title.toLowerCase().includes(query))
+            .slice(0, 3);
+
+        if (!relatedPosts.length) {
+            relatedListEl.innerHTML = `<p class="blog-detail-related-comments">No related articles found.</p>`;
+            return;
+        }
+
+        relatedListEl.innerHTML = relatedPosts.map((post) => `
+            <article class="blog-detail-related-item" data-related-title="${post.title}">
+              <img src="${post.image}" alt="${post.title}">
+              <div>
+                <span class="blog-detail-related-meta">${post.category.toUpperCase()}</span>
+                <a href="#" class="blog-detail-related-link">${post.title}</a>
+                <p class="blog-detail-related-comments">${getCommentLabel(post.comments.length)}</p>
+              </div>
+            </article>
+        `).join("");
+
+        relatedListEl.querySelectorAll(".blog-detail-related-item").forEach((item) => {
+            const post = posts.find((entry) => entry.title === item.dataset.relatedTitle);
+            if (!post) return;
+            item.addEventListener("click", (event) => {
+                event.preventDefault();
+                openPost(post);
+            });
+        });
+    }
+
+    function renderComments() {
+        if (commentsHeadingEl) commentsHeadingEl.textContent = getCommentLabel(commentState.length);
+        if (commentsEl) commentsEl.textContent = getCommentLabel(commentState.length);
+        if (!commentsListEl) return;
+
+        commentsListEl.innerHTML = commentState.map((item) => `
+            <article class="blog-detail-comment-item">
+              <div class="blog-detail-comment-head">
+                <strong>${escapeHtml(item.name)}</strong>
+                <span><i class="bi bi-calendar4"></i> ${escapeHtml(item.date)}</span>
+              </div>
+              <p>${escapeHtml(item.message)}</p>
+            </article>
+        `).join("");
+    }
+
+    if (titleEl) titleEl.textContent = activePost.title;
+    if (imageEl) {
+        imageEl.src = activePost.image;
+        imageEl.alt = activePost.title;
+    }
+    if (dateEl) dateEl.textContent = activePost.date;
+    if (authorEl) authorEl.textContent = activePost.author;
+    if (categoryEl) categoryEl.textContent = activePost.category;
+    if (excerptEl) excerptEl.textContent = activePost.excerpt;
+    if (bodyEl) {
+        bodyEl.innerHTML = matchedPost.body.map((paragraph) => `<p>${paragraph}</p>`).join("");
+    }
+    if (quoteTextEl) quoteTextEl.textContent = matchedPost.quote.text;
+    if (quoteAuthorEl) quoteAuthorEl.textContent = matchedPost.quote.author.toUpperCase();
+
+    if (tagsEl) {
+        tagsEl.innerHTML = matchedPost.tags.map((tag) => {
+            const label = tag.split("-").map((chunk) => chunk.charAt(0).toUpperCase() + chunk.slice(1)).join(" ");
+            return `<button type="button" data-post-tag="${tag}">${label}</button>`;
+        }).join("");
+
+        tagsEl.querySelectorAll("[data-post-tag]").forEach((button) => {
+            button.addEventListener("click", () => button.classList.toggle("active"));
+        });
+    }
+
+    const currentIndex = posts.findIndex((post) => post.title === matchedPost.title);
+    const prevIndex = currentIndex <= 0 ? posts.length - 1 : currentIndex - 1;
+    if (prevLinkEl) {
+        const prevPost = posts[prevIndex];
+        prevLinkEl.textContent = prevPost.title;
+        prevLinkEl.addEventListener("click", (event) => {
+            event.preventDefault();
+            openPost(prevPost);
+        });
+    }
+
+    categoryButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.detailCategory === matchedPost.detailCategory);
+        button.addEventListener("click", () => {
+            const selected = posts.find((post) => post.detailCategory === button.dataset.detailCategory);
+            if (selected) openPost(selected);
+        });
+    });
+
+    tagButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const selected = posts.find((post) => post.tags.includes(button.dataset.detailTag));
+            if (selected) openPost(selected);
+        });
+    });
+
+    if (searchInput) {
+        const applySearch = () => renderRelatedPosts(searchInput.value || "");
+        searchInput.addEventListener("input", applySearch);
+        if (searchBtn) searchBtn.addEventListener("click", applySearch);
+    }
+
+    if (commentForm && commentName && commentEmail && commentMessage) {
+        commentForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const name = commentName.value.trim();
+            const email = commentEmail.value.trim();
+            const message = commentMessage.value.trim();
+
+            if (!name || !email || !message) {
+                if (commentNotice) commentNotice.textContent = "Please fill in all fields.";
+                return;
+            }
+
+            commentState.push({
+                name,
+                date: new Date().toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric"
+                }),
+                message
+            });
+
+            renderComments();
+            commentForm.reset();
+            if (commentNotice) commentNotice.textContent = "Comment posted successfully.";
+        });
+    }
+
+    renderRelatedPosts();
+    renderComments();
 }
 
 // FOOTER IMG SLIDE

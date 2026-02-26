@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Detail</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+<body>
+  <nav class="relative z-[1000] w-full bg-[#1f262b] sticky top-0 z-[1000] w-full bg-[#1f262b] shadow-md">
+    <div class="max-w-8xl mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <button onclick="toggleMenu()" class="lg:hidden text-2xl text-white">
+          <i class="fa fa-bars"></i>
+        </button>
+
+        <ul class="hidden lg:flex items-center gap-6 text-sm tracking-wide text-gray-300">
+          <li class="relative">
+            <button onclick="toggleDropdown('home')" class="flex items-center gap-1 hover:text-white">
+              HOME <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="home" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a href="home.html" class="block px-4 py-2 hover:bg-gray-100">Home</a></li>
+            </ul>
+          </li>
+          <li class="relative">
+            <button onclick="toggleDropdown('shop')" class="flex items-center gap-1 hover:text-white">
+              SHOP <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="shop" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">SHOP</a></li>
+            </ul>
+          </li>
+          <li class="relative">
+            <button onclick="toggleDropdown('product')" class="flex items-center gap-1 hover:text-white">
+              PRODUCT <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="product" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a href="product-detail.html" class="block px-4 py-2 hover:bg-gray-100">PRODUCT</a></li>
+            </ul>
+          </li>
+          <li class="relative">
+            <button onclick="toggleDropdown('blog')" class="flex items-center gap-1 hover:text-white">
+              BLOG <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="blog" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a href="blog.html" class="block px-4 py-2 hover:bg-gray-100">BLOG</a></li>
+            </ul>
+          </li>
+          <li class="relative">
+            <button onclick="toggleDropdown('featured')" class="flex items-center gap-1 hover:text-white">
+              FEATURED <i class="fa fa-chevron-down text-xs"></i>
+            </button>
+            <ul id="featured" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
+              <li><a href="featured.html" class="block px-4 py-2 hover:bg-gray-100">FEATURED</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="text-4xl font-serif text-white tracking-wide nav-logo">
+          <img src="img/logo-white.png" height="80" width="130" alt="Flacio">
+        </div>
+
+        <div class="hidden lg:flex items-center gap-6 text-lg text-white">
+          <button type="button" onclick="toggleNavSearch()" class="text-white hover:text-gray-300 transition" aria-label="Open search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button type="button" onclick="openUserSidebar()" class="text-white hover:text-gray-300 transition" aria-label="Open account sidebar">
+            <i class="fa-regular fa-circle-user"></i>
+          </button>
+          <a href="wishlist.html" aria-label="Open wishlist"><i class="fa-regular fa-heart"></i></a>
+          <a href="cart.html" aria-label="Open cart"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+      </div>
+
+      <div id="mobileMenu" class="hidden lg:hidden border-t border-white/20">
+        <button onclick="toggleMobileDropdown('mhome')" class="w-full text-left px-6 py-3 text-white border-b border-white/10">HOME <i class="fa fa-chevron-down float-right"></i></button>
+        <div id="mhome" class="hidden bg-[#263037]"><a href="home.html" class="block px-10 py-2 text-white">HOME</a></div>
+        <button onclick="toggleMobileDropdown('mshop')" class="w-full text-left px-6 py-3 text-white border-b border-white/10">SHOP <i class="fa fa-chevron-down float-right"></i></button>
+        <div id="mshop" class="hidden bg-[#263037]"><a href="shop.html" class="block px-10 py-2 text-white">SHOP</a></div>
+        <button onclick="toggleMobileDropdown('mproduct')" class="w-full text-left px-6 py-3 text-white border-b border-white/10">PRODUCT <i class="fa fa-chevron-down float-right"></i></button>
+        <div id="mproduct" class="hidden bg-[#263037]"><a href="product-detail.html" class="block px-10 py-2 text-white">PRODUCT</a></div>
+        <button onclick="toggleMobileDropdown('mblog')" class="w-full text-left px-6 py-3 text-white border-b border-white/10">BLOG <i class="fa fa-chevron-down float-right"></i></button>
+        <div id="mblog" class="hidden bg-[#263037]"><a href="blog.html" class="block px-10 py-2 text-white">BLOG</a></div>
+        <button onclick="toggleMobileDropdown('mfeatured')" class="w-full text-left px-6 py-3 text-white border-b border-white/10">FEATURED <i class="fa fa-chevron-down float-right"></i></button>
+        <div id="mfeatured" class="hidden bg-[#263037]"><a href="featured.html" class="block px-10 py-2 text-white">FEATURED</a></div>
+      </div>
+
+      <div id="navSearchBar" class="nav-search-bar hidden">
+        <div class="nav-search-inner">
+          <input id="navSearchInput" type="text" placeholder="Search products..." aria-label="Search products">
+          <button type="button" onclick="closeNavSearch()" aria-label="Close search">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="userSidebarOverlay" class="user-sidebar-overlay" onclick="closeUserSidebar()"></div>
+  <aside id="userSidebar" class="user-sidebar" aria-hidden="true">
+    <div class="user-sidebar-head">
+      <h3>Account</h3>
+      <button type="button" onclick="closeUserSidebar()" aria-label="Close sidebar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="user-sidebar-body">
+      <h4 class="user-auth-title">SIGN IN</h4>
+      <input type="email" class="user-auth-input" placeholder="Email*" aria-label="Email">
+      <div class="user-password-wrap">
+        <input id="sidebarPassword" type="password" class="user-auth-input" placeholder="Password*" aria-label="Password">
+        <button type="button" class="user-password-toggle" onclick="toggleSidebarPassword()" aria-label="Show password">
+          <i class="fa-regular fa-eye"></i>
+        </button>
+      </div>
+      <a href="#" class="user-forgot-link">Lost your password ?</a>
+      <div class="user-auth-actions">
+        <button type="button" class="user-auth-btn user-auth-btn-primary">SIGN IN</button>
+        <button type="button" class="user-auth-btn user-auth-btn-outline">CREATE YOUR ACCOUNT</button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="blog-detail-page">
+    <div class="blog-detail-wrap">
+      <a href="blog.html" class="blog-detail-back"><i class="bi bi-arrow-left"></i> Back to Blogs</a>
+
+      <img id="blogDetailImage" src="img/blog-4_1296x.webp" alt="Blog post image" class="blog-detail-image">
+      
+      <div class="blog-detail-hero">
+        <span id="blogDetailCategory" class="blog-detail-category-pill">News</span>
+        <h1 id="blogDetailTitle">Traveling Solo Is Awesome</h1>
+        <p class="blog-detail-byline">
+          By <span id="blogDetailAuthor">Tung Hoang</span> on <span id="blogDetailDate">Sep 30, 2024</span>
+          <span id="blogDetailComments" class="visually-hidden">0 comments</span>
+        </p>
+      </div>
+    </div>
+
+      <div class="blog-detail-layout mt-5">
+        <aside class="blog-detail-sidebar">
+          <div class="blog-detail-search">
+            <input id="blogDetailSearchInput" type="search" placeholder="Search blog..." aria-label="Search blog">
+            <button type="button" id="blogDetailSearchBtn" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+
+          <section class="blog-detail-widget">
+            <h3>Categories</h3>
+            <ul class="blog-detail-category-list">
+              <li><button type="button" data-detail-category="air-purifying"><i class="bi bi-chevron-right"></i> Air Purifying</button></li>
+              <li><button type="button" data-detail-category="ceramic-pots"><i class="bi bi-chevron-right"></i> Ceramic Pots</button></li>
+              <li><button type="button" data-detail-category="herb-seeds"><i class="bi bi-chevron-right"></i> Herb Seeds</button></li>
+              <li><button type="button" data-detail-category="indoor-plants"><i class="bi bi-chevron-right"></i> Indoor Plants</button></li>
+              <li><button type="button" data-detail-category="low-maintenance"><i class="bi bi-chevron-right"></i> Low Maintenance</button></li>
+              <li><button type="button" data-detail-category="plant-bundle"><i class="bi bi-chevron-right"></i> Plant Bundle</button></li>
+            </ul>
+          </section>
+
+          <section class="blog-detail-widget">
+            <h3>Related Articles</h3>
+            <div id="blogDetailRelatedList" class="blog-detail-related-list"></div>
+          </section>
+
+          <section class="blog-detail-widget">
+            <h3>Articles Tags</h3>
+            <div class="blog-detail-tags">
+              <button type="button" data-detail-tag="baber">Baber</button>
+              <button type="button" data-detail-tag="baby-needs">Baby Needs</button>
+              <button type="button" data-detail-tag="beauty">Beauty</button>
+              <button type="button" data-detail-tag="cosmetic">Cosmetic</button>
+              <button type="button" data-detail-tag="hot">Hot</button>
+              <button type="button" data-detail-tag="new">New</button>
+              <button type="button" data-detail-tag="organic">Organic</button>
+              <button type="button" data-detail-tag="simple">Simple</button>
+            </div>
+          </section>
+        </aside>
+
+        <article class="blog-detail-content">
+          <!-- <img id="blogDetailImage" src="img/blog-4_1296x.webp" alt="Blog post image" class="blog-detail-image"> -->
+          <p id="blogDetailExcerpt" class="blog-detail-excerpt"></p>
+          <div id="blogDetailBody" class="blog-detail-body"></div>
+
+          <blockquote class="blog-detail-quote">
+            <p id="blogDetailQuoteText"></p>
+            <cite id="blogDetailQuoteAuthor"></cite>
+          </blockquote>
+
+          <div id="blogDetailPostTags" class="blog-detail-post-tags"></div>
+
+          <div class="blog-detail-prev-next">
+            <div>
+              <span>Previous</span>
+              <a href="#" id="blogDetailPrevLink">Indoor Plants Are Good For Health.</a>
+            </div>
+            <button type="button" class="blog-detail-more-btn" aria-label="More posts"><i class="bi bi-three-dots"></i></button>
+          </div>
+
+          <section class="blog-detail-comments">
+            <h2 id="blogDetailCommentsHeading">2 comments</h2>
+            <div id="blogDetailCommentsList"></div>
+          </section>
+
+          <section class="blog-detail-comment-form-wrap">
+            <h2>Leave a comment</h2>
+            <form id="blogDetailCommentForm" class="blog-detail-comment-form">
+              <div class="blog-detail-form-row">
+                <input id="blogCommentName" type="text" placeholder="Name" required>
+                <input id="blogCommentEmail" type="email" placeholder="Email" required>
+              </div>
+              <textarea id="blogCommentMessage" placeholder="Message" required></textarea>
+              <p id="blogCommentFormNotice" class="blog-detail-form-notice" aria-live="polite"></p>
+              <button type="submit" class="blog-detail-submit-btn">POST COMMENT</button>
+            </form>
+          </section>
+        </article>
+      </div>
+    </div>
+
+    <button type="button" id="blogDetailScrollTop" class="blog-detail-scroll-top" aria-label="Back to top">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+  </main>
+
+  
+
+  <footer class="footer mt-5">
+    <div class="container">
+      <div class="row gy-5">
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>COMPANY</h6>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+          <a href="#">Corporate Orders</a>
+          <a href="#">Refer a Friend</a>
+          <a href="#">Our Guarantee</a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>SUPPORT</h6>
+          <a href="#">Help + FAQs</a>
+          <a href="#">Track Your Order</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+          <a href="#">Contact Support</a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>PLANT QUESTIONS?</h6>
+          <a href="#">Plant Care Tips</a>
+          <a href="#">Plant Life Blog</a>
+          <a href="#">Vera Plant Care App</a>
+          <a href="#">Meet Plant Mom</a>
+          <a href="#">Contact the Grow-How Team</a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h6>STAY IN THE LOOP</h6>
+          <p class="mb-4">Stay in the loop with special offers, plant-parenting tips, and more.</p>
+          <input type="email" placeholder="Email address..." class="news-input">
+          <div class="d-flex mt-4 social">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-x-twitter"></i>
+            <i class="fab fa-whatsapp"></i>
+            <i class="fab fa-tiktok"></i>
+          </div>
+        </div>
+      </div>
+      <div class="payments mt-5">
+        <img src="img/payment.avif" alt="Payment Methods">
+      </div>
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between">
+        <div>&copy; 2024 Flacio Store</div>
+        <div>
+          <span class="me-4">Terms Of Use</span>
+          <span class="me-4">Copyright &amp; Trademark</span>
+          <span class="me-4">Policy</span>
+          <span>Sitemap</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
