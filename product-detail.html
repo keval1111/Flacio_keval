@@ -17,7 +17,7 @@
 </head>
 
 <body>
- 
+
   <nav class="relative z-[1000] w-full bg-[#1f262b] sticky top-0 z-[1000] w-full bg-[#1f262b] shadow-md">
     <div class="max-w-8xl mx-auto px-6">
 
@@ -39,7 +39,7 @@
               HOME <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="home" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a href="home.html" class="block px-4 py-2 hover:bg-gray-100">Home</a></li> 
+              <li><a href="home.html" class="block px-4 py-2 hover:bg-gray-100">Home</a></li>
             </ul>
           </li>
 
@@ -48,7 +48,7 @@
               SHOP <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="shop" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">SHOP</a></li>             
+              <li><a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">SHOP</a></li>
             </ul>
           </li>
 
@@ -57,7 +57,7 @@
               PRODUCT <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="product" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a href="product-detail.html" class="block px-4 py-2 hover:bg-gray-100">PRODUCT</a></li>             
+              <li><a href="product-detail.html" class="block px-4 py-2 hover:bg-gray-100">PRODUCT</a></li>
             </ul>
           </li>
 
@@ -66,7 +66,7 @@
               BLOG <i class="fa fa-chevron-down text-xs"></i>
             </button>
             <ul id="blog" class="hidden absolute top-full mt-2 w-44 rounded-md bg-white text-black shadow-lg z-50">
-              <li><a href="blog.html" class="block px-4 py-2 hover:bg-gray-100">BLOG</a></li>             
+              <li><a href="blog.html" class="block px-4 py-2 hover:bg-gray-100">BLOG</a></li>
             </ul>
           </li>
 
@@ -85,10 +85,12 @@
         </div>
 
         <div class="hidden lg:flex items-center gap-6 text-lg text-white">
-          <button type="button" onclick="toggleNavSearch()" class="text-white hover:text-gray-300 transition" aria-label="Open search">
+          <button type="button" onclick="toggleNavSearch()" class="text-white hover:text-gray-300 transition"
+            aria-label="Open search">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-          <button type="button" onclick="openUserSidebar()" class="text-white hover:text-gray-300 transition" aria-label="Open account sidebar">
+          <button type="button" onclick="openUserSidebar()" class="text-white hover:text-gray-300 transition"
+            aria-label="Open account sidebar">
             <i class="fa-regular fa-circle-user"></i>
           </button>
           <a href="wishlist.html" aria-label="Open wishlist"><i class="fa-regular fa-heart"></i></a>
@@ -156,7 +158,7 @@
     </div>
   </nav>
 
-<div id="userSidebarOverlay" class="user-sidebar-overlay" onclick="closeUserSidebar()"></div>
+  <div id="userSidebarOverlay" class="user-sidebar-overlay" onclick="closeUserSidebar()"></div>
   <aside id="userSidebar" class="user-sidebar" aria-hidden="true">
     <div class="user-sidebar-head">
       <h3>Account</h3>
@@ -170,7 +172,8 @@
       <input type="email" class="user-auth-input" placeholder="Email*" aria-label="Email">
 
       <div class="user-password-wrap">
-        <input id="sidebarPassword" type="password" class="user-auth-input" placeholder="Password*" aria-label="Password">
+        <input id="sidebarPassword" type="password" class="user-auth-input" placeholder="Password*"
+          aria-label="Password">
         <button type="button" class="user-password-toggle" onclick="toggleSidebarPassword()" aria-label="Show password">
           <i class="fa-regular fa-eye"></i>
         </button>
@@ -185,206 +188,277 @@
     </div>
   </aside>
 
-<div class="container py-5">
-  <div class="row g-4">
+  <div class="container py-5">
+    <div class="row g-4">
 
-    <!-- LEFT IMAGE SECTION -->
-    <div class="col-lg-7">
+      <!-- LEFT IMAGE SECTION -->
+      <div class="col-lg-7">
 
-      <div class="d-flex gap-4">
+        <div class="d-flex gap-4">
 
-        <!-- Thumbnails -->
-        <div class="flex flex-col gap-4">
-          <img src="img/10-2_600x.webp" class="thumb" onclick="changeImage(this)" alt="Product thumbnail 1">
-          <img src="img/10-6_540x.webp" class="thumb" onclick="changeImage(this)" alt="Product thumbnail 2">
-          <img src="img/10-5_1080x1080.webp" class="thumb" onclick="changeImage(this)" alt="Product thumbnail 3">
+          <!-- Thumbnails -->
+          <div class="flex flex-col gap-4">
+            <img src="img/10-2_600x.webp" class="thumb" onclick="changeImage(this)" alt="Product thumbnail 1">
+            <img src="img/10-6_540x.webp" class="thumb" onclick="changeImage(this)" alt="Product thumbnail 2">
+            <img src="img/10-5_1080x1080.webp" class="thumb" onclick="changeImage(this)" alt="Product thumbnail 3">
+          </div>
+
+          <!-- Main Image -->
+          <div class="flex-1">
+            <img id="mainImage" src="img/10-2_600x.webp" class="w-full rounded" alt="Product image">
+          </div>
+
         </div>
 
-        <!-- Main Image -->
-        <div class="flex-1">
-          <img id="mainImage" src="img/10-2_600x.webp" class="w-full rounded" alt="Product image">
+      </div>
+
+      <!-- RIGHT CONTENT SECTION -->
+      <div class="col-lg-5">
+
+        <h2 id="productName" class="text-3xl font-semibold mb-3">Ruby Rubber Tree</h2>
+
+        <!-- Price -->
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-gray-400 line-through text-xl">$90.00</span>
+          <span id="productPrice" class="text-green-700 text-2xl font-bold">$52.00</span>
         </div>
 
-      </div>
+        <!-- Info -->
+        <p class="text-gray-600 mb-2"><i class="fa fa-eye mr-2"></i>36 people viewing</p>
+        <p class="text-red-500 mb-2"><i class="fa fa-fire mr-2"></i>39 sold in last 7 hours</p>
+        <p class="text-green-600 mb-4"><i class="fa fa-check-circle mr-2"></i>In stock</p>
 
-    </div>
+        <p class="text-gray-500 mb-4">
+          Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio.
+        </p>
 
-    <!-- RIGHT CONTENT SECTION -->
-    <div class="col-lg-5">
-
-      <h2 id="productName" class="text-3xl font-semibold mb-3">Ruby Rubber Tree</h2>
-
-      <!-- Price -->
-      <div class="flex items-center gap-3 mb-3">
-        <span class="text-gray-400 line-through text-xl">$90.00</span>
-        <span id="productPrice" class="text-green-700 text-2xl font-bold">$52.00</span>
-      </div>
-
-      <!-- Info -->
-      <p class="text-gray-600 mb-2"><i class="fa fa-eye mr-2"></i>36 people viewing</p>
-      <p class="text-red-500 mb-2"><i class="fa fa-fire mr-2"></i>39 sold in last 7 hours</p>
-      <p class="text-green-600 mb-4"><i class="fa fa-check-circle mr-2"></i>In stock</p>
-
-      <p class="text-gray-500 mb-4">
-        Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio.
-      </p>
-
-      <!-- Color -->
-      <h6 class="mb-2">Color:</h6>
-      <div class="flex gap-3 mb-4">
-        <span class="color black"></span>
-        <span class="color pink"></span>
-        <span class="color blue"></span>
-      </div>
-
-      <!-- Quantity -->
-      <div class="flex items-center gap-3 mb-4">
-        <div class="qty-box">
-          <button onclick="minus()">-</button>
-          <input id="qty" type="number" min="1" value="1">
-          <button onclick="plus()">+</button>
+        <!-- Color -->
+        <h6 class="mb-2">Color:</h6>
+        <div class="flex gap-3 mb-4">
+          <span class="color black"></span>
+          <span class="color pink"></span>
+          <span class="color blue"></span>
         </div>
 
-        <button class="add-btn">Add To Cart</button>
-      </div>
+        <!-- Quantity -->
+        <div class="flex items-center gap-3 mb-4">
+          <div class="qty-box">
+            <button onclick="minus()">-</button>
+            <input id="qty" type="number" min="1" value="1">
+            <button onclick="plus()">+</button>
+          </div>
 
-      <!-- Buy Now -->
-      <button class="buy-btn w-full">Buy It Now</button>
+          <button class="add-btn">Add To Cart</button>
+        </div>
+
+        <!-- Buy Now -->
+        <button class="buy-btn w-full">Buy It Now</button>
+
+        <section class="max-w-6xl mx-auto p-8">
+
+          <!-- Title -->
+          <h2 class="text-center text-lg md:text-xl font-medium text-gray-800 mb-6">
+            Buy More Save More!
+          </h2>
+
+          <!-- Content Row -->
+          <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+            <!-- Left Text -->
+            <div class="text-center md:text-left">
+              <p class="text-lg text-gray-800">
+                5 item(s) get
+                <span class="text-red-600 font-semibold">10% OFF</span>
+              </p>
+              <p class="text-gray-600 text-sm">
+                on each product
+              </p>
+            </div>
+
+            <!-- Button -->
+            <button
+              class="px-10 py-3 border border-gray-700 text-gray-800 tracking-widest hover:bg-black hover:text-white transition duration-300">
+              ADD
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <section class="py-8">
+          <div class="max-w-6xl mx-auto bg-gray-200 rounded-md py-8 px-6 text-center">
+
+            <!-- Title -->
+            <h2 class="text-xl md:text-1xl font-semibold text-gray-800 mb-6">
+              Guaranteed Checkout
+            </h2>
+
+            <!-- Logos Row -->
+            <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+
+              <!-- Visa -->
+              <img src="img/Variable-Color.avif" alt="Visa" class="h-7 md:h-8 object-contain">
+            </div>
+          </div>
+        </section>
+      </div>
 
     </div>
 
   </div>
-</div>
 
-<section class="pd-info-section">
-  <div class="container">
-    <div class="pd-info-tabs" role="tablist" aria-label="Product detail information">
-      <button class="pd-info-tab is-active" data-pd-tab="description" type="button" role="tab" aria-selected="true">Description</button>
-      <button class="pd-info-tab" data-pd-tab="review" type="button" role="tab" aria-selected="false">Review</button>
-      <button class="pd-info-tab" data-pd-tab="shipping" type="button" role="tab" aria-selected="false">Shipping</button>
-      <button class="pd-info-tab" data-pd-tab="return" type="button" role="tab" aria-selected="false">Return</button>
-    </div>
 
-    <div class="pd-info-content">
-      <div class="pd-info-pane is-active" data-pd-pane="description" role="tabpanel">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur.
-        </p>
-        <p>
-          Don't ever play yourself. The weather is amazing, walk with me through the pathway of more success. Take
-          this journey with me, Lion! The other day the grass was brown, now it's green because I ain't give up. Never
-          surrender
-        </p>
-        <ul>
-          <li>Claritas est etiam processus dynamicus.</li>
-          <li>Qui sequitur mutationem consuetudium lectorum.</li>
-          <li>Claritas est etiam processus dynamicus.</li>
-          <li>Qui sequitur mutationem consuetudium lectorum.</li>
-          <li>Claritas est etiam processus dynamicus.</li>
-          <li>Qui sequitur mutationem consuetudium lectorum.</li>
-        </ul>
-        <p>
-          It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-          essentially unchanged. It was popularised in the 1960s with the release.
-        </p>
+
+  <section class="pd-info-section">
+    <div class="container">
+      <div class="pd-info-tabs" role="tablist" aria-label="Product detail information">
+        <button class="pd-info-tab is-active" data-pd-tab="description" type="button" role="tab"
+          aria-selected="true">Description</button>
+        <button class="pd-info-tab" data-pd-tab="review" type="button" role="tab" aria-selected="false">Review</button>
+        <button class="pd-info-tab" data-pd-tab="shipping" type="button" role="tab"
+          aria-selected="false">Shipping</button>
+        <button class="pd-info-tab" data-pd-tab="return" type="button" role="tab" aria-selected="false">Return</button>
       </div>
 
-      <div class="pd-info-pane" data-pd-pane="review" role="tabpanel" hidden>
-        <div class="pd-review-wrap">
-          <h3>Customer Reviews</h3>
+      <div class="pd-info-content">
+        <div class="pd-info-pane is-active" data-pd-pane="description" role="tabpanel">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur.
+          </p>
+          <p>
+            Don't ever play yourself. The weather is amazing, walk with me through the pathway of more success. Take
+            this journey with me, Lion! The other day the grass was brown, now it's green because I ain't give up. Never
+            surrender
+          </p>
+          <ul>
+            <li>Claritas est etiam processus dynamicus.</li>
+            <li>Qui sequitur mutationem consuetudium lectorum.</li>
+            <li>Claritas est etiam processus dynamicus.</li>
+            <li>Qui sequitur mutationem consuetudium lectorum.</li>
+            <li>Claritas est etiam processus dynamicus.</li>
+            <li>Qui sequitur mutationem consuetudium lectorum.</li>
+          </ul>
+          <p>
+            It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+            essentially unchanged. It was popularised in the 1960s with the release.
+          </p>
+        </div>
 
-          <div class="pd-review-summary">
-            <div class="pd-review-col pd-review-score">
-              <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> 2.00 out of 5</p>
-            </div>
+        <div class="pd-info-pane" data-pd-pane="review" role="tabpanel" hidden>
+          <div class="pd-review-wrap">
+            <h3>Customer Reviews</h3>
 
-            <div class="pd-review-col pd-review-bars">
-              <div><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><b><em style="width:0%"></em></b><small>0</small></div>
-              <div><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></span><b><em style="width:0%"></em></b><small>0</small></div>
-              <div><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span><b><em style="width:24%"></em></b><small>1</small></div>
-              <div><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span><b><em style="width:48%"></em></b><small>2</small></div>
-              <div><span><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span><b><em style="width:24%"></em></b><small>1</small></div>
-            </div>
-
-            <div class="pd-review-col pd-review-action">
-              <button type="button">Write a review</button>
-            </div>
-          </div>
-
-          <div class="pd-feature-review">
-            <img src="img/10-2_600x.webp" alt="Jade succulent">
-            <div class="pd-feature-review-text">
-              <h4>JADE SUCCULENT</h4>
-              <p>$60.00 - $153.00</p>
-              <p>Pink</p>
-            </div>
-            <button type="button">ADD SELECTED ITEM(S)</button>
-          </div>
-
-          <div class="pd-review-list">
-            <article class="pd-review-item">
-              <div class="pd-review-item-top">
-                <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
-                <span>08/28/2025</span>
+            <div class="pd-review-summary">
+              <div class="pd-review-col pd-review-score">
+                <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i
+                    class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i> 2.00 out of 5</p>
               </div>
-              <div class="pd-review-user"><i class="fa-regular fa-user"></i> xcxz</div>
-              <h5>dds</h5>
-              <p>dds</p>
-            </article>
 
-            <article class="pd-review-item">
-              <div class="pd-review-item-top">
-                <p><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
-                <span>08/28/2025</span>
+              <div class="pd-review-col pd-review-bars">
+                <div><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-solid fa-star"></i></span><b><em style="width:0%"></em></b><small>0</small></div>
+                <div><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-regular fa-star"></i></span><b><em style="width:0%"></em></b><small>0</small></div>
+                <div><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i
+                      class="fa-regular fa-star"></i></span><b><em style="width:24%"></em></b><small>1</small></div>
+                <div><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i
+                      class="fa-regular fa-star"></i></span><b><em style="width:48%"></em></b><small>2</small></div>
+                <div><span><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i
+                      class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i
+                      class="fa-regular fa-star"></i></span><b><em style="width:24%"></em></b><small>1</small></div>
               </div>
-              <div class="pd-review-user"><i class="fa-regular fa-user"></i> sdf</div>
-              <h5>sdf</h5>
-              <p>sdfsd</p>
-            </article>
 
-            <article class="pd-review-item">
-              <div class="pd-review-item-top">
-                <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
-                <span>08/28/2025</span>
+              <div class="pd-review-col pd-review-action">
+                <button type="button">Write a review</button>
               </div>
-              <div class="pd-review-user"><i class="fa-regular fa-user"></i> hello</div>
-              <h5>helo how are you</h5>
-              <p>ksfbv</p>
-            </article>
+            </div>
+
+            <div class="pd-feature-review">
+              <img src="img/10-2_600x.webp" alt="Jade succulent">
+              <div class="pd-feature-review-text">
+                <h4>JADE SUCCULENT</h4>
+                <p>$60.00 - $153.00</p>
+                <p>Pink</p>
+              </div>
+              <button type="button">ADD SELECTED ITEM(S)</button>
+            </div>
+
+            <div class="pd-review-list">
+              <article class="pd-review-item">
+                <div class="pd-review-item-top">
+                  <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i
+                      class="fa-regular fa-star"></i></p>
+                  <span>08/28/2025</span>
+                </div>
+                <div class="pd-review-user"><i class="fa-regular fa-user"></i> xcxz</div>
+                <h5>dds</h5>
+                <p>dds</p>
+              </article>
+
+              <article class="pd-review-item">
+                <div class="pd-review-item-top">
+                  <p><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i
+                      class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i
+                      class="fa-regular fa-star"></i></p>
+                  <span>08/28/2025</span>
+                </div>
+                <div class="pd-review-user"><i class="fa-regular fa-user"></i> sdf</div>
+                <h5>sdf</h5>
+                <p>sdfsd</p>
+              </article>
+
+              <article class="pd-review-item">
+                <div class="pd-review-item-top">
+                  <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                      class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i
+                      class="fa-regular fa-star"></i></p>
+                  <span>08/28/2025</span>
+                </div>
+                <div class="pd-review-user"><i class="fa-regular fa-user"></i> hello</div>
+                <h5>helo how are you</h5>
+                <p>ksfbv</p>
+              </article>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="pd-info-pane" data-pd-pane="shipping" role="tabpanel" hidden>
-        <p>
-          For orders placed before 7am AEDT, we endeavour to process the same business day. Orders placed after 11am
-          AEDT will be processed the next business day.
-        </p>
-        <p>During sale events and new collection launches, there may be a slightly longer processing time.</p>
-        <p>All Auguste orders are hand-picked and packed with love from Byron Bay, Australie.</p>
-      </div>
+        <div class="pd-info-pane" data-pd-pane="shipping" role="tabpanel" hidden>
+          <p>
+            For orders placed before 7am AEDT, we endeavour to process the same business day. Orders placed after 11am
+            AEDT will be processed the next business day.
+          </p>
+          <p>During sale events and new collection launches, there may be a slightly longer processing time.</p>
+          <p>All Auguste orders are hand-picked and packed with love from Byron Bay, Australie.</p>
+        </div>
 
-      <div class="pd-info-pane" data-pd-pane="return" role="tabpanel" hidden>
-        <p>
-          You can choose between a refund or a credit note on full priced items.
-        </p>
-        <ul>
-          <li>Item(s) must be returned in their original condition and packaging: unworn, unwashed and with all tags attached.</li>
-          <li>Earrings cannot be returned due to health and safety reasons.</li>
-          <li>Return shipping methods and associated costs are the responsibility of the customer.</li>
-          <li>Sale items can not be refunded for change of mind.</li>
-        </ul>
+        <div class="pd-info-pane" data-pd-pane="return" role="tabpanel" hidden>
+          <p>
+            You can choose between a refund or a credit note on full priced items.
+          </p>
+          <ul>
+            <li>Item(s) must be returned in their original condition and packaging: unworn, unwashed and with all tags
+              attached.</li>
+            <li>Earrings cannot be returned due to health and safety reasons.</li>
+            <li>Return shipping methods and associated costs are the responsibility of the customer.</li>
+            <li>Sale items can not be refunded for change of mind.</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <section class="bg-gray-200 py-10">
     <div class="max-w-7xl mx-auto text-center">
-      
+
       <!-- Heading -->
       <h2 class="text-4xl md:text-4xl font-serif text-gray-800">
         Related Products
@@ -396,7 +470,7 @@
     </div>
   </section>
 
-<div class="container-fluid" id="topRating">
+  <div class="container-fluid" id="topRating">
     <div class="row g-4">
 
       <!-- PRODUCT 1 -->
@@ -486,19 +560,19 @@
       </div>
 
     </div>
-        <section class="bg-gray-200 py-10">
-          <div class="max-w-7xl mx-auto text-center">
-            
-            <!-- Heading -->
-            <h2 class="text-4xl md:text-3xl font-serif text-gray-800">
-              Recently Viewed Products
-            </h2>
-      
-            <!-- Underline -->
-            <div class="w-20 h-1 bg-green-800 mx-auto mt-2"></div>
-      
-          </div>
-        </section>
+    <section class="bg-gray-200 py-10">
+      <div class="max-w-7xl mx-auto text-center">
+
+        <!-- Heading -->
+        <h2 class="text-4xl md:text-3xl font-serif text-gray-800">
+          Recently Viewed Products
+        </h2>
+
+        <!-- Underline -->
+        <div class="w-20 h-1 bg-green-800 mx-auto mt-2"></div>
+
+      </div>
+    </section>
     <div class="row g-4 mt-2">
 
       <!-- PRODUCT 1 -->
@@ -585,12 +659,12 @@
           <h6 class="mt-3">Bought Together</h6>
           <p class="font-semibold">$80.00</p>
         </div>
-      </div> 
+      </div>
 
     </div>
   </div>
 
-<footer class="footer mt-5">
+  <footer class="footer mt-5">
     <div class="container">
 
       <div class="row gy-5">
